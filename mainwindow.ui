@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>359</width>
-    <height>376</height>
+    <width>900</width>
+    <height>600</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -31,10 +31,18 @@ QPushButton:hover {
 QPushButton:pressed {
     background-color: #1f618d;
 }
+QMainWindow {
+    min-width: 900px;
+    min-height: 600px;
+    background-color: #ecf0f1;
+}
 </string>
   </property>
+  <property name="unifiedTitleAndToolBarOnMac">
+   <bool>true</bool>
+  </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout_2">
+   <layout class="QVBoxLayout" name="verticalLayout_3">
     <item>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
@@ -90,6 +98,39 @@ QPushButton:pressed {
     </item>
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
+      <property name="styleSheet">
+       <string notr="true">QStackedWidget {
+    background-color: #ffffff;
+    border: 1px solid #d0d0d0;
+    border-radius: 12px;
+    padding: 12px;
+}
+
+QStackedWidget QWidget {
+    background-color: transparent;
+}
+QLineEdit {
+    background-color: #ffffff;
+    color: #2c3e50;
+    border: 1px solid #bfc9ca;
+    border-radius: 6px;
+    padding: 6px;
+    font-size: 13px;
+}
+
+QLineEdit:focus {
+    border: 2px solid #3498db;
+}
+QDateEdit {
+    background-color: #ffffff;
+    color: #2c3e50;
+    border: 1px solid #bfc9ca;
+    border-radius: 6px;
+    padding: 6px;
+}
+
+</string>
+      </property>
       <property name="currentIndex">
        <number>1</number>
       </property>
@@ -108,20 +149,271 @@ QPushButton:pressed {
         </property>
        </widget>
       </widget>
-      <widget class="QWidget" name="page_3">
-       <widget class="QLabel" name="label_3">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>20</y>
-          <width>191</width>
-          <height>20</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Gestión de Préstamos</string>
-        </property>
-       </widget>
+      <widget class="QWidget" name="pageDevolverPrestamo_3">
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_2">
+          <item>
+           <widget class="QWidget" name="prestamosButtonsBar" native="true">
+            <property name="styleSheet">
+             <string notr="true">QWidget#prestamosButtonsBar {
+    min-height: 50px;
+    max-height: 50px;
+    padding: 8px 12px;
+}
+</string>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_7">
+             <item>
+              <widget class="QPushButton" name="btnRegistrarPrestamo_3">
+               <property name="styleSheet">
+                <string notr="true">QPushButton {
+    background-color: #27ae60;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 8px 14px;
+}
+
+QPushButton:hover {
+    background-color: #2ecc71;
+}
+</string>
+               </property>
+               <property name="text">
+                <string>Registrar </string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="btnDevolverPrestamo_3">
+               <property name="styleSheet">
+                <string notr="true">QPushButton {
+    background-color: #27ae60;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 8px 14px;
+}
+
+QPushButton:hover {
+    background-color: #2ecc71;
+}
+</string>
+               </property>
+               <property name="text">
+                <string>Devolver </string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="btnListarPrestamos_3">
+               <property name="styleSheet">
+                <string notr="true">QPushButton {
+    background-color: #27ae60;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 8px 14px;
+}
+
+QPushButton:hover {
+    background-color: #2ecc71;
+}
+</string>
+               </property>
+               <property name="text">
+                <string>Listar</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QStackedWidget" name="stackedPrestamos">
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+    background-color: #27ae60;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 8px 14px;
+}
+
+QPushButton:hover {
+    background-color: #2ecc71;
+}
+
+</string>
+            </property>
+            <property name="currentIndex">
+             <number>1</number>
+            </property>
+            <widget class="QWidget" name="page_6">
+             <layout class="QHBoxLayout" name="horizontalLayout_8">
+              <item>
+               <widget class="QWidget" name="widget" native="true">
+                <layout class="QVBoxLayout" name="verticalLayout_6">
+                 <item>
+                  <widget class="QWidget" name="pageDevolverPrestamo" native="true">
+                   <layout class="QVBoxLayout" name="verticalLayout_4">
+                    <item>
+                     <widget class="QLineEdit" name="txtIdPrestamo">
+                      <property name="text">
+                       <string/>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLineEdit" name="txtIdLibro">
+                      <property name="text">
+                       <string/>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLineEdit" name="txtIdUsuario">
+                      <property name="text">
+                       <string/>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLineEdit" name="txtFechaPrestamo">
+                      <property name="text">
+                       <string/>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QPushButton" name="pushButton">
+                      <property name="styleSheet">
+                       <string notr="true">QPushButton {
+    background-color: #27ae60;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 8px 14px;
+}
+
+QPushButton:hover {
+    background-color: #2ecc71;
+}
+</string>
+                      </property>
+                      <property name="text">
+                       <string>Registrar Préstamo</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+            <widget class="QWidget" name="page_7">
+             <layout class="QVBoxLayout" name="verticalLayout_5">
+              <item>
+               <widget class="QWidget" name="pageDevolverPrestamo_2" native="true">
+                <layout class="QVBoxLayout" name="verticalLayout_11">
+                 <item>
+                  <widget class="QLineEdit" name="txtIdPrestamoDevolver"/>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="txtFechaDevolucion"/>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="pushButton_2">
+                   <property name="text">
+                    <string>Confirmar devolución</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+            <widget class="QWidget" name="page_8">
+             <layout class="QVBoxLayout" name="verticalLayout_8">
+              <item>
+               <widget class="QWidget" name="pageListarPrestamos" native="true">
+                <layout class="QVBoxLayout" name="verticalLayout_10">
+                 <item>
+                  <widget class="QWidget" name="pageListarPrestamos_3" native="true">
+                   <layout class="QVBoxLayout" name="verticalLayout_9">
+                    <item>
+                     <widget class="QLineEdit" name="txtIdPrestamo_3">
+                      <property name="text">
+                       <string/>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLineEdit" name="txtIdLibro_3">
+                      <property name="text">
+                       <string/>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLineEdit" name="txtIdUsuario_3">
+                      <property name="text">
+                       <string/>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLineEdit" name="txtFechaPrestamo_3">
+                      <property name="text">
+                       <string/>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QPushButton" name="pushButton_4">
+                      <property name="styleSheet">
+                       <string notr="true">QPushButton {
+    background-color: #27ae60;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 8px 14px;
+}
+
+QPushButton:hover {
+    background-color: #2ecc71;
+}
+</string>
+                      </property>
+                      <property name="text">
+                       <string>Registrar Préstamo</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
       </widget>
       <widget class="QWidget" name="page_2">
        <widget class="QLabel" name="label">
@@ -147,7 +439,7 @@ QPushButton:pressed {
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>359</width>
+     <width>900</width>
      <height>25</height>
     </rect>
    </property>
