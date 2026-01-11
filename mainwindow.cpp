@@ -1,5 +1,15 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
+#include <QMessageBox>
+#include <QFile>
+#include <QTextStream>
+struct Usuario {
+    int id;
+    QString nombre;
+    QString cedula;
+    QString correo;
+    QString telefono;
+};
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -17,28 +27,6 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->btnPrestamos, &QPushButton::clicked, this, [=]() {
         ui->stackedWidget->setCurrentIndex(1);
     });
-    ui->txtIdPrestamo->setPlaceholderText("ID Préstamo");
-    ui->txtIdUsuario->setPlaceholderText("ID Usuario");
-    ui->txtIdLibro->setPlaceholderText("ID Libro");
-    ui->txtFechaPrestamo->setPlaceholderText("Fecha de préstamo");
-
-    connect(ui->btnRegistrarPrestamo_3, &QPushButton::clicked, this, [=]() {
-        ui->stackedPrestamos->setCurrentWidget(ui->pageRegistrarPrestamo);
-    });
-
-    connect(ui->btnDevolverPrestamo_3, &QPushButton::clicked, this, [=]() {
-        ui->stackedPrestamos->setCurrentWidget(ui->pageDevolverPrestamo);
-    });
-
-    connect(ui->btnListarPrestamos_3, &QPushButton::clicked, this, [=]() {
-        ui->stackedPrestamos->setCurrentWidget(ui->pageListarPrestamos);
-    });
-
-
-    ui->txtIdPrestamoDevolver->setPlaceholderText("ID del préstamo");
-    ui->txtFechaDevolucion->setPlaceholderText("Fecha de devolución: YYYY-MM-DD");
-
-
 
 }
 
@@ -46,3 +34,20 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+void MainWindow::crearUsuario(const Usuario &u) {
+	QFile archivo("usuarios.txt");
+	
+    if (!archivo.open(QIODevice::Append | QIODevice::Text)) {
+        QMessageBox::warning(this, "Error", "No se pudo abrir el archivo");
+        return;
+    }
+
+    QTextStream out(&archivo);
+    out << u.id << "|" << u.nombre << "|" << u.cedula<< "|" << u.correo << "|" << u.telefono << "\n";
+
+    archivo.close();
+}
+void MainWindow::listarUsuarios() {}
+void MainWindow::modificarUsuario() {}
+void MainWindow::eliminarUsuario() {}
