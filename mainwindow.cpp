@@ -3,6 +3,7 @@
 #include <QMessageBox>
 #include <QFile>
 #include <QTextStream>
+
 struct Usuario {
     int id;
     QString nombre;
@@ -16,6 +17,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
     connect(ui->btnLibros, &QPushButton::clicked, this, [=]() {
         ui->stackedWidget->setCurrentIndex(2);
     });
@@ -27,7 +29,6 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->btnPrestamos, &QPushButton::clicked, this, [=]() {
         ui->stackedWidget->setCurrentIndex(1);
     });
-
 }
 
 MainWindow::~MainWindow()
@@ -36,18 +37,21 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::crearUsuario(const Usuario &u) {
-	QFile archivo("usuarios.txt");
-	
+    QFile archivo("usuarios.txt");
+
     if (!archivo.open(QIODevice::Append | QIODevice::Text)) {
         QMessageBox::warning(this, "Error", "No se pudo abrir el archivo");
         return;
     }
 
     QTextStream out(&archivo);
-    out << u.id << "|" << u.nombre << "|" << u.cedula<< "|" << u.correo << "|" << u.telefono << "\n";
+    out << u.id << "|" << u.nombre << "|" << u.cedula << "|" << u.correo << "|" << u.telefono << "\n";
 
     archivo.close();
 }
+
 void MainWindow::listarUsuarios() {}
+
 void MainWindow::modificarUsuario() {}
+
 void MainWindow::eliminarUsuario() {}
