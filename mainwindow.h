@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "usuario.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -19,5 +20,9 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    void crearUsuario(const Usuario &u);
+    void listarUsuarios();
+    void modificarUsuario();
+    void eliminarUsuario();
 };
 #endif // MAINWINDOW_H
