@@ -2,22 +2,15 @@
 #include "./ui_mainwindow.h"
 #include <QMessageBox>
 #include <QFile>
-#include <QTextStream>
-
-struct Usuario {
-    int id;
-    QString nombre;
-    QString cedula;
-    QString correo;
-    QString telefono;
-};
+#include <QMessageBox>
+#include "usuario.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
+    //Navegación entre opciones
     connect(ui->btnLibros, &QPushButton::clicked, this, [=]() {
         ui->stackedWidget->setCurrentIndex(2);
     });
@@ -29,29 +22,32 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->btnPrestamos, &QPushButton::clicked, this, [=]() {
         ui->stackedWidget->setCurrentIndex(1);
     });
+    // Navegación dentro de Préstamos
+    connect(ui->btnPrestamoRegistrar, &QPushButton::clicked, this, [=]() {
+        ui->stackedPrestamosPages->setCurrentIndex(0);
+    });
+
+    connect(ui->btnPrestamoDevolver, &QPushButton::clicked, this, [=]() {
+        ui->stackedPrestamosPages->setCurrentIndex(1);
+    });
+
+    connect(ui->btnPrestamoListar, &QPushButton::clicked, this, [=]() {
+        ui->stackedPrestamosPages->setCurrentIndex(2);
+    });
+
+    ui->tablePrestamos->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
 }
+
+void MainWindow::crearUsuario(const Usuario &u) {
+    crearUsuario(u);
+
+    QMessageBox::information(this, "Éxito", "Usuario guardado correctamente");
+}
+
 
 MainWindow::~MainWindow()
 {
     delete ui;
 }
 
-void MainWindow::crearUsuario(const Usuario &u) {
-    QFile archivo("usuarios.txt");
-
-    if (!archivo.open(QIODevice::Append | QIODevice::Text)) {
-        QMessageBox::warning(this, "Error", "No se pudo abrir el archivo");
-        return;
-    }
-
-    QTextStream out(&archivo);
-    out << u.id << "|" << u.nombre << "|" << u.cedula << "|" << u.correo << "|" << u.telefono << "\n";
-
-    archivo.close();
-}
-
-void MainWindow::listarUsuarios() {}
-
-void MainWindow::modificarUsuario() {}
-
-void MainWindow::eliminarUsuario() {}
