@@ -12,15 +12,15 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     //Navegación entre opciones
     connect(ui->btnLibros, &QPushButton::clicked, this, [=]() {
-        ui->stackedWidget->setCurrentIndex(2);
-    });
-
-    connect(ui->btnUsuarios, &QPushButton::clicked, this, [=]() {
         ui->stackedWidget->setCurrentIndex(0);
     });
 
-    connect(ui->btnPrestamos, &QPushButton::clicked, this, [=]() {
+    connect(ui->btnUsuarios, &QPushButton::clicked, this, [=]() {
         ui->stackedWidget->setCurrentIndex(1);
+    });
+
+    connect(ui->btnPrestamos, &QPushButton::clicked, this, [=]() {
+        ui->stackedWidget->setCurrentIndex(2);
     });
     // Navegación dentro de Préstamos
     connect(ui->btnPrestamoRegistrar, &QPushButton::clicked, this, [=]() {
