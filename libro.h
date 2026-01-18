@@ -2,7 +2,6 @@
 #define LIBRO_H
 #include <string>
 using namespace std;
-
 struct libros{
     int idLibro;
     string titulo;
@@ -10,7 +9,5 @@ struct libros{
     int anioPublicacion;
     bool disponibilidad;
 };
-
 void guardarLibros(const libros &l);
-
 #endif // LIBRO_H

@@ -7,7 +7,6 @@
 #include <QString>
 
 void guardarLibros(const libros &l) {
-
     //Abre el archivo
     QFile archivo("libros.txt");
     if (!archivo.open(QIODevice::Append | QIODevice::Text)){
@@ -16,10 +15,8 @@ void guardarLibros(const libros &l) {
         QMessageBox :: warning(nullptr, "Error" , "No se pudo abrir el archivo");
         return;
     }
-
     //Crea un stream de salida, para poder escribir dentro del archivo usando el out
     QTextStream out(&archivo);
-
     //Escribe el texto 
     out << l.idLibro << "|"
         << l.titulo<< "|"
@@ -30,3 +27,4 @@ void guardarLibros(const libros &l) {
     //Cierra el archivo
     archivo.close();
 }
+
