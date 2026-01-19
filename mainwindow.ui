@@ -113,18 +113,118 @@ QPushButton {
 QPushButton:hover {
     background-color: #95a5a6;
 }
-         </string>
+       </string>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="pageUsuarios">
        <layout class="QVBoxLayout">
         <item>
-         <widget class="QLabel" name="labelUsuarios">
+         <widget class="QLabel" name="label">
           <property name="text">
-           <string>Gestión de Usuarios</string>
+           <string>GESTIÓN DE USUARIOS</string>
           </property>
+          <property name="font">
+           <font>
+            <pointsize>14</pointsize>
+            <bold>true</bold>
+            <kerning>true</kerning>
+           </font>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QWidget" name="layoutWidget">
+          <layout class="QVBoxLayout" name="verticalLayout">
+           <item>
+            <widget class="QPushButton" name="btnCrearUsuario">
+             <property name="text">
+              <string>Crear</string>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">
+QPushButton {
+    background-color: #C3A6FF;
+    color: white;
+    border-radius: 8px;
+    padding: 6px;
+    font-weight: bold;
+}
+QPushButton:hover {
+    background-color: #C3A6FF;
+}
+              </string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnListarUsuarios">
+             <property name="text">
+              <string>Listar</string>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">
+QPushButton {
+    background-color: #F44336;
+    color: white;
+    border-radius: 8px;
+    padding: 6px;
+    font-weight: bold;
+}
+QPushButton:hover {
+    background-color: #F44336;
+}
+              </string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnModificarUsuario">
+             <property name="text">
+              <string>Modificar</string>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">
+QPushButton {
+    background-color: #F7A8C6;
+    color: white;
+    border-radius: 8px;
+    padding: 6px;
+    font-weight: bold;
+}
+QPushButton:hover {
+    background-color: #F7A8C6;
+}
+              </string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnEliminarUsuario">
+             <property name="text">
+              <string>Eliminar</string>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">
+QPushButton {
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 8px;
+    padding: 6px;
+    font-weight: bold;
+}
+QPushButton:hover {
+    background-color: #4CAF50;
+}
+              </string>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </widget>
         </item>
        </layout>
@@ -171,7 +271,7 @@ QPushButton {
 QPushButton:hover {
     background-color: #95a5a6;
 }
-         </string>
+             </string>
             </property>
             <property name="text">
              <string>Listar</string>
@@ -195,7 +295,7 @@ QPushButton:hover {
 </string>
           </property>
           <property name="currentIndex">
-           <number>1</number>
+           <number>2</number>
           </property>
           <widget class="QWidget" name="pagePrestamoRegistrar">
            <layout class="QVBoxLayout">
@@ -315,7 +415,7 @@ QPushButton:hover {
      <x>0</x>
      <y>0</y>
      <width>550</width>
-     <height>25</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
