@@ -14,8 +14,14 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
 set(PROJECT_SOURCES
         main.cpp
+        libro.cpp
+        usuario.cpp
+        prestamo.cpp
         mainwindow.cpp
         mainwindow.h
+        libro.h
+        usuario.h
+        prestamo.h
         mainwindow.ui
 )
 
