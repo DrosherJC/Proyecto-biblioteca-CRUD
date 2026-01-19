@@ -17,12 +17,12 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-
+private slots:
+    void on_btnCrearUsuario_clicked();
+    void on_btnListarUsuarios_clicked();
+    void on_btnModificarUsuario_clicked();
+    void on_btnEliminarUsuario_clicked();
 private:
     Ui::MainWindow *ui;
-    void crearUsuario(const Usuario &u);
-    void listarUsuarios();
-    void modificarUsuario();
-    void eliminarUsuario();
 };
 #endif // MAINWINDOW_H

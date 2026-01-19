@@ -11,8 +11,8 @@ struct Usuario {
 };
 
 void crearUsuario(Usuario &u);
-void listarUsuarios();
-void modificarUsuario();
-void eliminarUsuario();
+QString listarUsuarios();
+void modificarUsuario(int id, const Usuario &u);
+void eliminarUsuario(int id);
 
-#endif // USUARIO_H
+#endif

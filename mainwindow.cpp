@@ -39,15 +39,37 @@ MainWindow::MainWindow(QWidget *parent)
 
 }
 
-void MainWindow::crearUsuario(const Usuario &u) {
+void MainWindow::on_btnCrearUsuario_clicked(){
+    Usuario u;
+    u.id = ui->txtId->text().toInt();
+    u.nombre = ui->txtNombre->text();
+    u.cedula = ui->txtCedula->text();
+    u.correo = ui->txtCorreo->text();
+    u.telefono = ui->txtTelefono->text();
+
     crearUsuario(u);
 
     QMessageBox::information(this, "Éxito", "Usuario guardado correctamente");
 }
+void MainWindow::on_btnListarUsuarios_clicked(){
+    QString datos = listarUsuarios();
+    QMessageBox::information(this, "Usuarios", datos);
+}
 
+void MainWindow::on_btnModificarUsuario_clicked(){
+    Usuario u;
+    u.id = ui->txtId->text().toInt();
+    u.nombre = ui->txtNombre->text();
+    u.cedula = ui->txtCedula->text();
+    u.correo = ui->txtCorreo->text();
+    u.telefono = ui->txtTelefono->text();
+
+    modificarUsuario(u);
+
+    QMessageBox::information(this, "Ok", "Usuario modificado");
+}
 
 MainWindow::~MainWindow()
 {
     delete ui;
 }
-
