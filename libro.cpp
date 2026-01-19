@@ -28,3 +28,16 @@ void guardarLibros(const libros &l) {
     archivo.close();
 }
 
+void guardarAutores(const autores &a){
+    QFile archivo("autores.txt");
+    if(!archivo.open(QIODevice::Append | QIODevice::Text)){
+        return;
+    }
+    QTextStream out(&archivo);
+    out << a.idAutor << "|"
+        << a.nombre << "|"
+        << a.nacionalidad << "|"
+        << a.fechaNacimiento << "|" << "\n";
+    archivo.close();
+}
+
