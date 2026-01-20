@@ -12,7 +12,7 @@ struct Usuario {
 
 void crearUsuario(Usuario &u);
 QString listarUsuarios();
-void modificarUsuario(int id, const Usuario &u);
+void modificarUsuario(int idBuscado, const Usuario &u);
 void eliminarUsuario(int id);
 
 #endif

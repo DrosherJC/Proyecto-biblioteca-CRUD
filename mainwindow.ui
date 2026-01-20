@@ -119,127 +119,101 @@ QPushButton:hover {
        <number>0</number>
       </property>
       <widget class="QWidget" name="pageUsuarios">
-       <layout class="QVBoxLayout">
+        <layout class="QVBoxLayout">
+
         <item>
-         <widget class="QLabel" name="label">
-          <property name="text">
-           <string>GESTIÓN DE USUARIOS</string>
-          </property>
-          <property name="font">
-           <font>
+        <widget class="QLabel">
+            <property name="alignment">
+            <set>Qt::AlignCenter</set>
+            </property>
+            <property name="font">
+            <font>
             <pointsize>14</pointsize>
             <bold>true</bold>
-            <kerning>true</kerning>
-           </font>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
+            </font>
+            </property>
+            <property name="text">
+            <string>Gestión de Usuarios</string>
+            </property>
+        </widget>
         </item>
+
         <item>
-         <widget class="QWidget" name="layoutWidget">
-          <layout class="QVBoxLayout" name="verticalLayout">
-           <item>
+        <layout class="QHBoxLayout">
+            <item>
+            <widget class="QLineEdit" name="txtId">
+            <property name="placeholderText">
+            <string>ID</string>
+            </property>
+            </widget>
+            </item>
+            <item>
+            <widget class="QLineEdit" name="txtNombre">
+            <property name="placeholderText">
+            <string>Nombre</string>
+            </property>
+            </widget>
+            </item>
+            <item>
+            <widget class="QLineEdit" name="txtCedula">
+            <property name="placeholderText">
+            <string>Cédula</string>
+            </property>
+            </widget>
+            </item>
+            <item>
+            <widget class="QLineEdit" name="txtCorreo">
+            <property name="placeholderText">
+            <string>Correo</string>
+            </property>
+            </widget>
+            </item>
+            <item>
+            <widget class="QLineEdit" name="txtTelefono">
+            <property name="placeholderText">
+            <string>Teléfono</string>
+            </property>
+            </widget>
+            </item>
+        </layout>
+        </item>
+
+        <item>
+        <layout class="QHBoxLayout">
+            <item>
             <widget class="QPushButton" name="btnCrearUsuario">
-             <property name="text">
-              <string>Crear</string>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">
-QPushButton {
-    background-color: #C3A6FF;
-    color: white;
-    border-radius: 8px;
-    padding: 6px;
-    font-weight: bold;
-}
-QPushButton:hover {
-    background-color: #C3A6FF;
-}
-              </string>
-             </property>
+            <property name="text">
+            <string>Crear</string>
+            </property>
             </widget>
-           </item>
-           <item>
+            </item>
+            <item>
             <widget class="QPushButton" name="btnListarUsuarios">
-             <property name="text">
-              <string>Listar</string>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">
-QPushButton {
-    background-color: #F44336;
-    color: white;
-    border-radius: 8px;
-    padding: 6px;
-    font-weight: bold;
-}
-QPushButton:hover {
-    background-color: #F44336;
-}
-              </string>
-             </property>
+            <property name="text">
+            <string>Listar</string>
+            </property>
             </widget>
-           </item>
-           <item>
+            </item>
+            <item>
             <widget class="QPushButton" name="btnModificarUsuario">
-             <property name="text">
-              <string>Modificar</string>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">
-QPushButton {
-    background-color: #F7A8C6;
-    color: white;
-    border-radius: 8px;
-    padding: 6px;
-    font-weight: bold;
-}
-QPushButton:hover {
-    background-color: #F7A8C6;
-}
-              </string>
-             </property>
+            <property name="text">
+            <string>Modificar</string>
+            </property>
             </widget>
-           </item>
-           <item>
+            </item>
+            <item>
             <widget class="QPushButton" name="btnEliminarUsuario">
-             <property name="text">
-              <string>Eliminar</string>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">
-QPushButton {
-    background-color: #4CAF50;
-    color: white;
-    border-radius: 8px;
-    padding: 6px;
-    font-weight: bold;
-}
-QPushButton:hover {
-    background-color: #4CAF50;
-}
-              </string>
-             </property>
+            <property name="text">
+            <string>Eliminar</string>
+            </property>
             </widget>
-           </item>
-          </layout>
-         </widget>
+            </item>
+        </layout>
         </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="pageLibros">
-       <layout class="QVBoxLayout">
-        <item>
-         <widget class="QLabel" name="labelLibros">
-          <property name="text">
-           <string>Gestión de Libros</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
+
+        </layout>
+        </widget>
+
       <widget class="QWidget" name="pagePrestamos">
        <layout class="QVBoxLayout">
         <item>

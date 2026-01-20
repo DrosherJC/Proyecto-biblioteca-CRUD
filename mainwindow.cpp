@@ -4,6 +4,8 @@
 #include <QFile>
 #include <QMessageBox>
 #include "usuario.h"
+#include "prestamo.h"
+#include "libro.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)

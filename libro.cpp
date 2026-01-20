@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
-#include "usuario.h"
+#include "libro.h"
 #include <QFile>
 #include <QTextStream>
 #include <QMessageBox>
