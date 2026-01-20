@@ -38,7 +38,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tablePrestamos->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
 }
-
+//Sección Usuarios
 void MainWindow::on_btnCrearUsuario_clicked(){
     Usuario u;
     u.id = ui->txtId->text().toInt();
@@ -67,6 +67,35 @@ void MainWindow::on_btnModificarUsuario_clicked(){
     modificarUsuario(u);
 
     QMessageBox::information(this, "Ok", "Usuario modificado");
+}
+
+
+
+
+
+//Sección Prestamos
+void MainWindow::on_btnConfirmarPrestamo_clicked()
+{
+    // Crear objeto préstamo
+    Prestamo p;
+
+    // Obtener datos desde los campos de texto
+    p.idPrestamo = ui->txtPrestamoId->text().toInt();
+    p.idLibro = ui->txtPrestamoLibro->text().toInt();
+    p.idUsuario = ui->txtPrestamoUsuario->text().toInt();
+    p.fechaPrestamo = ui->txtPrestamoFecha->text();
+
+    // Registrar préstamo
+    if (registrarPrestamo(p))
+        QMessageBox::information(this, "Éxito", "Préstamo registrado");
+    else
+        QMessageBox::warning(this, "Error", "No se pudo registrar");
+
+    // Limpiar campos del formulario
+    ui->txtPrestamoId->clear();
+    ui->txtPrestamoLibro->clear();
+    ui->txtPrestamoUsuario->clear();
+    ui->txtPrestamoFecha->clear();
 }
 
 MainWindow::~MainWindow()

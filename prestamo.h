@@ -13,4 +13,7 @@ struct Prestamo
     bool devuelto;
 };
 
+// Registra un nuevo préstamo en el sistema
+// Retorna true si el préstamo se guardó correctamente
+bool registrarPrestamo(const Prestamo &p);
 #endif // PRESTAMO_H
