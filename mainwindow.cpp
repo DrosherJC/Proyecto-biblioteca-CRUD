@@ -2,7 +2,6 @@
 #include "./ui_mainwindow.h"
 #include <QMessageBox>
 #include <QFile>
-#include <QMessageBox>
 #include "usuario.h"
 #include "prestamo.h"
 #include "libro.h"
@@ -14,15 +13,15 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     //Navegación entre opciones
     connect(ui->btnLibros, &QPushButton::clicked, this, [=]() {
-        ui->stackedWidget->setCurrentIndex(0);
+        ui->stackedWidget->setCurrentIndex(2);
     });
 
     connect(ui->btnUsuarios, &QPushButton::clicked, this, [=]() {
-        ui->stackedWidget->setCurrentIndex(1);
+        ui->stackedWidget->setCurrentIndex(0);
     });
 
     connect(ui->btnPrestamos, &QPushButton::clicked, this, [=]() {
-        ui->stackedWidget->setCurrentIndex(2);
+        ui->stackedWidget->setCurrentIndex(1);
     });
     // Navegación dentro de Préstamos
     connect(ui->btnPrestamoRegistrar, &QPushButton::clicked, this, [=]() {
@@ -66,10 +65,16 @@ void MainWindow::on_btnModificarUsuario_clicked(){
     u.correo = ui->txtCorreo->text();
     u.telefono = ui->txtTelefono->text();
 
-    modificarUsuario(u);
+   // modificarUsuario(u.id,u);
 
     QMessageBox::information(this, "Ok", "Usuario modificado");
 }
+
+void MainWindow::on_btnEliminarUsuario_clicked()
+{
+    QMessageBox::information(this, "Info", "Eliminar usuario aún no implementado");
+}
+
 
 
 
@@ -100,7 +105,21 @@ void MainWindow::on_btnConfirmarPrestamo_clicked()
     ui->txtPrestamoFecha->clear();
 }
 
+void MainWindow::on_btnConfirmarDevolucion_clicked()
+{
+    if (devolverPrestamo( // Llama a función externa para devolver préstamo
+            ui->txtDevolverPrestamoId->text().toInt(),
+            ui->txtDevolverFecha->text()))
+        QMessageBox::information(this, "Éxito", "Préstamo devuelto");
+    else
+        QMessageBox::warning(this, "Error", "No se pudo devolver");
+
+    ui->txtDevolverPrestamoId->clear();
+    ui->txtDevolverFecha->clear();
+}
+
+
 MainWindow::~MainWindow()
 {
-    delete ui;
+    delete ui;  // Libera la memoria de la interfaz de usuario
 }

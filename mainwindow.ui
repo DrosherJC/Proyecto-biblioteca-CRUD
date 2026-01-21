@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>550</width>
-    <height>411</height>
+    <height>433</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -116,104 +116,99 @@ QPushButton:hover {
        </string>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="pageUsuarios">
-        <layout class="QVBoxLayout">
-
+       <layout class="QVBoxLayout">
         <item>
-        <widget class="QLabel">
-            <property name="alignment">
-            <set>Qt::AlignCenter</set>
-            </property>
-            <property name="font">
-            <font>
+         <widget class="QLabel" name="label">
+          <property name="font">
+           <font>
             <pointsize>14</pointsize>
             <bold>true</bold>
-            </font>
-            </property>
-            <property name="text">
-            <string>Gestión de Usuarios</string>
-            </property>
-        </widget>
+           </font>
+          </property>
+          <property name="text">
+           <string>Gestión de Usuarios</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignCenter</set>
+          </property>
+         </widget>
         </item>
-
         <item>
-        <layout class="QHBoxLayout">
-            <item>
-            <widget class="QLineEdit" name="txtId">
+         <layout class="QHBoxLayout">
+          <item>
+           <widget class="QLineEdit" name="txtId">
             <property name="placeholderText">
-            <string>ID</string>
+             <string>ID</string>
             </property>
-            </widget>
-            </item>
-            <item>
-            <widget class="QLineEdit" name="txtNombre">
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="txtNombre">
             <property name="placeholderText">
-            <string>Nombre</string>
+             <string>Nombre</string>
             </property>
-            </widget>
-            </item>
-            <item>
-            <widget class="QLineEdit" name="txtCedula">
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="txtCedula">
             <property name="placeholderText">
-            <string>Cédula</string>
+             <string>Cédula</string>
             </property>
-            </widget>
-            </item>
-            <item>
-            <widget class="QLineEdit" name="txtCorreo">
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="txtCorreo">
             <property name="placeholderText">
-            <string>Correo</string>
+             <string>Correo</string>
             </property>
-            </widget>
-            </item>
-            <item>
-            <widget class="QLineEdit" name="txtTelefono">
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="txtTelefono">
             <property name="placeholderText">
-            <string>Teléfono</string>
+             <string>Teléfono</string>
             </property>
-            </widget>
-            </item>
-        </layout>
+           </widget>
+          </item>
+         </layout>
         </item>
-
         <item>
-        <layout class="QHBoxLayout">
-            <item>
-            <widget class="QPushButton" name="btnCrearUsuario">
+         <layout class="QHBoxLayout">
+          <item>
+           <widget class="QPushButton" name="btnCrearUsuario">
             <property name="text">
-            <string>Crear</string>
+             <string>Crear</string>
             </property>
-            </widget>
-            </item>
-            <item>
-            <widget class="QPushButton" name="btnListarUsuarios">
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnListarUsuarios">
             <property name="text">
-            <string>Listar</string>
+             <string>Listar</string>
             </property>
-            </widget>
-            </item>
-            <item>
-            <widget class="QPushButton" name="btnModificarUsuario">
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnModificarUsuario">
             <property name="text">
-            <string>Modificar</string>
+             <string>Modificar</string>
             </property>
-            </widget>
-            </item>
-            <item>
-            <widget class="QPushButton" name="btnEliminarUsuario">
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnEliminarUsuario">
             <property name="text">
-            <string>Eliminar</string>
+             <string>Eliminar</string>
             </property>
-            </widget>
-            </item>
-        </layout>
+           </widget>
+          </item>
+         </layout>
         </item>
-
-        </layout>
-        </widget>
-
+       </layout>
+      </widget>
       <widget class="QWidget" name="pagePrestamos">
        <layout class="QVBoxLayout">
         <item>
@@ -339,6 +334,12 @@ QPushButton:hover {
            <layout class="QVBoxLayout">
             <item>
              <widget class="QTableWidget" name="tablePrestamos">
+              <property name="editTriggers">
+               <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
+              </property>
+              <property name="dragDropOverwriteMode">
+               <bool>true</bool>
+              </property>
               <column>
                <property name="text">
                 <string>ID Préstamo</string>
@@ -389,7 +390,7 @@ QPushButton:hover {
      <x>0</x>
      <y>0</y>
      <width>550</width>
-     <height>21</height>
+     <height>25</height>
     </rect>
    </property>
   </widget>
