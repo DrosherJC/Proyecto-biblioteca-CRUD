@@ -88,8 +88,22 @@ void MainWindow::on_btnEliminarUsuario_clicked()
 
 
 //Sección Prestamos
-void MainWindow::on_btnConfirmarPrestamo_clicked()
-{
+void MainWindow::on_btnConfirmarPrestamo_clicked(){
+    if(ui->txtPrestamoId->text().isEmpty()
+    || ui->txtPrestamoLibro->text().isEmpty()
+    || ui->txtPrestamoUsuario->text().isEmpty()
+        ){
+        QMessageBox::warning(this, "Error", "Complete todos los campos");
+        return;
+    }
+
+    QDate fechaPrestamo = ui->txtPrestamoFecha->date();
+
+    if(fechaPrestamo > QDate::currentDate()){
+        QMessageBox::warning(this, "Error", "La fecha no puede ser mayor a la actual");
+        return;
+    }
+
     // Crear objeto préstamo
     Prestamo p;
 
@@ -140,6 +154,25 @@ void MainWindow::on_btnRefrescarPrestamos_clicked()
         ui->tablePrestamos->setItem(i, 4, new QTableWidgetItem(lista[i].estado));
     }
 }
+
+void MainWindow::on_btnBuscarPrestamos_clicked(){
+
+    ui->tablePrestamosBuscados->setRowCount(0);
+
+    int idBuscado = ui->txtBuscarPrestamoId->text().toInt();
+
+    QList<Prestamo> lista = buscarPrestamos(idBuscado);
+
+    for (int i = 0; i < lista.size(); i++) {
+        ui->tablePrestamosBuscados->insertRow(i);
+        ui->tablePrestamosBuscados->setItem(i,0,new QTableWidgetItem(QString::number(lista[i].idPrestamo)));
+        ui->tablePrestamosBuscados->setItem(i,1,new QTableWidgetItem(QString::number(lista[i].idUsuario)));
+        ui->tablePrestamosBuscados->setItem(i,2,new QTableWidgetItem(QString::number(lista[i].idLibro)));
+        ui->tablePrestamosBuscados->setItem(i,3,new QTableWidgetItem((lista[i].fechaPrestamo)));
+        ui->tablePrestamosBuscados->setItem(i,4,new QTableWidgetItem((lista[i].estado)));
+    }
+}
+
 
 
 MainWindow::~MainWindow()

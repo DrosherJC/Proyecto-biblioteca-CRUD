@@ -388,7 +388,7 @@ QPushButton:hover {
 </string>
           </property>
           <property name="currentIndex">
-           <number>3</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="pagePrestamoRegistrar">
            <layout class="QVBoxLayout">
@@ -528,7 +528,7 @@ QPushButton:hover {
              <string>ID Usuario</string>
             </property>
            </widget>
-           <widget class="QPushButton" name="btnBuscar">
+           <widget class="QPushButton" name="btnBuscarPrestamos">
             <property name="geometry">
              <rect>
               <x>10</x>

@@ -9,8 +9,9 @@ static const QString RUTA = "data/prestamos.txt";
   Registra un nuevo préstamo
   Estado inicial: ACTIVO
  */
-bool registrarPrestamo(const Prestamo &p)
-{
+bool registrarPrestamo(const Prestamo &p){
+
+
     // Abre el archivo en modo agregar
     QFile archivo(RUTA);
     if (!archivo.open(QIODevice::Append | QIODevice::Text))
@@ -82,8 +83,7 @@ bool devolverPrestamo(int idBuscado, const QString &fechaDev){
   Lee los préstamos del archivo
   Retorna una lista de préstamos
  */
-QList<Prestamo> listarPrestamos()
-{
+QList<Prestamo> listarPrestamos(){
     QList<Prestamo> lista;
     QFile archivo(RUTA);
 
@@ -109,6 +109,34 @@ QList<Prestamo> listarPrestamos()
         lista.append(p);
     }
 
+    archivo.close();
+    return lista;
+}
+
+QList<Prestamo> buscarPrestamos(int idBuscado){
+    QList<Prestamo> lista;
+    QFile archivo(RUTA);
+
+    if(!archivo.open(QIODevice::ReadOnly | QIODevice::Text))
+        return lista;
+
+    QTextStream in(&archivo);
+    while (!in.atEnd()){
+        QStringList d = in.readLine().split("|");
+        if(d.size() != 6) continue;
+
+        Prestamo p;
+        p.idPrestamo = d[0].toInt();
+        p.idLibro = d[1].toInt();
+        p.idUsuario = d[2].toInt();
+        p.fechaPrestamo = d[3];
+        p.fechaDevolucion = d[4];
+        p.estado = d[5];
+
+        if(p.idUsuario == idBuscado){
+            lista.append(p);
+        }
+    }
     archivo.close();
     return lista;
 }

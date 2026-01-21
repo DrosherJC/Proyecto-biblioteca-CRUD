@@ -25,4 +25,6 @@ bool devolverPrestamo(int idPrestamo, const QString &fechaDevolucion);
 // Devuelve una lista con todos los préstamos registrados
 QList<Prestamo> listarPrestamos();
 
+
+QList<Prestamo> buscarPrestamos(int idBuscado);
 #endif // PRESTAMO_H
