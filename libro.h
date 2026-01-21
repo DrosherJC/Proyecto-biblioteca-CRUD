@@ -1,7 +1,7 @@
 #ifndef LIBRO_H
 #define LIBRO_H
 #include <QString>
-using namespace std;
+
 struct libros{
     int idLibro;
     QString titulo;
@@ -16,6 +16,14 @@ struct autores{
     QString fechaNacimiento;
 };
 
-void guardarLibros(const libros &l);
-void guardarAutores(const autores &a);
+void crearLibros(const libros &l);
+QString listarLibros();
+void actualizarLibros(int idBuscarLibros, const libros &l);
+void eliminarLibros(int idBuscarLibros);
+
+void crearAutores(const autores &a);
+QString listarAutores();
+void actualizarAutores(int idBuscarAutor, const autores &a);
+void eliminarAutores(int idBuscarAutor);
+
 #endif // LIBRO_H
