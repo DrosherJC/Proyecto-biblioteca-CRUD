@@ -26,7 +26,6 @@ private slots:
 
     void on_btnConfirmarPrestamo_clicked();
     void on_btnConfirmarDevolucion_clicked();
-    void on_btnRefrescarPrestamos_clicked();
 private:
     Ui::MainWindow *ui;
 };

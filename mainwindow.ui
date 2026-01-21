@@ -6,27 +6,130 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>550</width>
-    <height>433</height>
+    <width>692</width>
+    <height>461</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Sistema Biblioteca - CRUD</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QMainWindow, QWidget {
+    background-color: #f6f7fb;
+    font-family: &quot;Segoe UI&quot;;
+    font-size: 14px;
+}
+
+QLabel {
+    color: #2c3e50;
+}
+
+QLabel#lblTitulo {
+    font-size: 26px;
+    font-weight: bold;
+    color: #1f3a5f;
+}
+
+QLineEdit {
+    background-color: #ffffff;
+    color: #2c3e50;
+    border: 1px solid #cfd3dc;
+    border-radius: 6px;
+    padding: 6px 8px;
+    font-size: 14px;
+}
+
+QLineEdit:focus {
+    border: 1px solid #4a90e2;
+    background-color: #ffffff;
+}
+
+QDateEdit {
+    background-color: #ffffff;
+    color: #2c3e50;
+    border: 1px solid #cfd3dc;
+    border-radius: 6px;
+    padding: 6px 8px;
+    font-size: 14px;
+}
+
+QDateEdit:focus {
+    border: 1px solid #4a90e2;
+}
+
+QDateEdit::up-button,
+QDateEdit::down-button {
+    width: 0px;
+    height: 0px;
+    border: none;
+}
+
+QPushButton {
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 14px;
+    font-weight: 500;
+}
+
+QPushButton:hover {
+    background-color: #3b7dc4;
+}
+
+QPushButton:pressed {
+    background-color: #316aa3;
+}
+
+QTableWidget {
+    background-color: #ffffff;
+    border: 1px solid #cfd3dc;
+    border-radius: 6px;
+    gridline-color: #e5e7eb;
+}
+
+QHeaderView::section {
+    background-color: #eef1f6;
+    color: #2c3e50;
+    font-weight: bold;
+    padding: 6px;
+    border: none;
+}
+
+QTableWidget::item {
+    padding: 6px;
+}
+
+QTableWidget::item:selected {
+    background-color: #dce9f9;
+    color: #2c3e50;
+}
+
+QStackedWidget {
+    background-color: transparent;
+}
+
+QScrollBar:vertical {
+    width: 8px;
+    background: transparent;
+}
+
+QScrollBar::handle:vertical {
+    background: #cfd3dc;
+    border-radius: 4px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background: #b0b5bf;
+}
+</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout">
     <item>
      <widget class="QLabel" name="lblTitulo">
       <property name="styleSheet">
-       <string notr="true">
-QLabel {
-    font-size: 18px;
-    font-weight: bold;
-    padding: 8px;
-    background-color: #bdc3c7;
-    border-radius: 6px;
-}
-       </string>
+       <string notr="true"/>
       </property>
       <property name="text">
        <string>Sistema Biblioteca</string>
@@ -41,17 +144,7 @@ QLabel {
       <item>
        <widget class="QPushButton" name="btnLibros">
         <property name="styleSheet">
-         <string notr="true">
-QPushButton {
-    background-color: #7f8c8d;
-    color: white;
-    border-radius: 5px;
-    padding: 6px 12px;
-}
-QPushButton:hover {
-    background-color: #95a5a6;
-}
-         </string>
+         <string notr="true"/>
         </property>
         <property name="text">
          <string>Libros</string>
@@ -61,17 +154,7 @@ QPushButton:hover {
       <item>
        <widget class="QPushButton" name="btnUsuarios">
         <property name="styleSheet">
-         <string notr="true">
-QPushButton {
-    background-color: #7f8c8d;
-    color: white;
-    border-radius: 5px;
-    padding: 6px 12px;
-}
-QPushButton:hover {
-    background-color: #95a5a6;
-}
-         </string>
+         <string notr="true"/>
         </property>
         <property name="text">
          <string>Usuarios</string>
@@ -81,17 +164,7 @@ QPushButton:hover {
       <item>
        <widget class="QPushButton" name="btnPrestamos">
         <property name="styleSheet">
-         <string notr="true">
-QPushButton {
-    background-color: #7f8c8d;
-    color: white;
-    border-radius: 5px;
-    padding: 6px 12px;
-}
-QPushButton:hover {
-    background-color: #95a5a6;
-}
-         </string>
+         <string notr="true"/>
         </property>
         <property name="text">
          <string>Préstamos</string>
@@ -116,17 +189,38 @@ QPushButton:hover {
        </string>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="pageUsuarios">
        <layout class="QVBoxLayout">
         <item>
-         <widget class="QLabel" name="label">
+         <widget class="QLabel" name="labelUsuarios">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="font">
            <font>
-            <pointsize>14</pointsize>
+            <family>Segoe UI</family>
+            <pointsize>-1</pointsize>
             <bold>true</bold>
            </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QLabel#labelUsuarios {
+    background-color: #e9eef6;
+    color: #1f3a5f;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 8px;
+    border-radius: 6px;
+    min-height: 40px;
+    max-height: 40px;
+    qproperty-alignment: AlignCenter;
+}
+</string>
           </property>
           <property name="text">
            <string>Gestión de Usuarios</string>
@@ -215,6 +309,17 @@ QPushButton:hover {
          <layout class="QHBoxLayout">
           <item>
            <widget class="QPushButton" name="btnPrestamoRegistrar">
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+    background-color: #ecf0f1;
+    color: #2c3e50;
+    border: 1px solid #cfd3dc;
+}
+
+QPushButton:hover {
+    background-color: #e0e4e7;
+}</string>
+            </property>
             <property name="text">
              <string>Registrar</string>
             </property>
@@ -222,6 +327,17 @@ QPushButton:hover {
           </item>
           <item>
            <widget class="QPushButton" name="btnPrestamoDevolver">
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+    background-color: #ecf0f1;
+    color: #2c3e50;
+    border: 1px solid #cfd3dc;
+}
+
+QPushButton:hover {
+    background-color: #e0e4e7;
+}</string>
+            </property>
             <property name="text">
              <string>Devolver</string>
             </property>
@@ -230,17 +346,15 @@ QPushButton:hover {
           <item>
            <widget class="QPushButton" name="btnPrestamoListar">
             <property name="styleSheet">
-             <string notr="true">
-QPushButton {
-    background-color: #7f8c8d;
-    color: white;
-    border-radius: 5px;
-    padding: 6px 12px;
+             <string notr="true">QPushButton {
+    background-color: #ecf0f1;
+    color: #2c3e50;
+    border: 1px solid #cfd3dc;
 }
+
 QPushButton:hover {
-    background-color: #95a5a6;
-}
-             </string>
+    background-color: #e0e4e7;
+}</string>
             </property>
             <property name="text">
              <string>Listar</string>
@@ -290,11 +404,7 @@ QPushButton:hover {
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="txtPrestamoFecha">
-              <property name="placeholderText">
-               <string>Fecha Préstamo</string>
-              </property>
-             </widget>
+             <widget class="QDateEdit" name="txtPrestamoFecha"/>
             </item>
             <item>
              <widget class="QPushButton" name="btnConfirmarPrestamo">
@@ -315,11 +425,7 @@ QPushButton:hover {
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="txtDevolverFecha">
-              <property name="placeholderText">
-               <string>Fecha Devolución</string>
-              </property>
-             </widget>
+             <widget class="QDateEdit" name="txtDevolverFecha"/>
             </item>
             <item>
              <widget class="QPushButton" name="btnConfirmarDevolucion">
@@ -389,8 +495,8 @@ QPushButton:hover {
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>550</width>
-     <height>25</height>
+     <width>692</width>
+     <height>24</height>
     </rect>
    </property>
   </widget>

@@ -1,5 +1,5 @@
 #ifndef PRESTAMO_H
-#define PRESTAMO_H // Evita que este archivo de cabecera se incluya más de una vez
+#define PRESTAMO_H
 #include <QString>
 
 struct Prestamo
@@ -20,8 +20,5 @@ bool registrarPrestamo(const Prestamo &p);
 // Actualiza la fecha de devolución
 // Retorna true si se registró la devolución
 bool devolverPrestamo(int idPrestamo, const QString &fechaDevolucion);
-
-// Devuelve una lista con todos los préstamos registrados
-QList<Prestamo> listarPrestamos();
 
 #endif // PRESTAMO_H
