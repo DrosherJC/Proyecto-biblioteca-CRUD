@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>692</width>
-    <height>461</height>
+    <height>472</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -86,6 +86,7 @@ QTableWidget {
     border: 1px solid #cfd3dc;
     border-radius: 6px;
     gridline-color: #e5e7eb;
+	color: rgb(0, 0, 0);
 }
 
 QHeaderView::section {
@@ -177,19 +178,10 @@ QScrollBar::handle:vertical:hover {
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="styleSheet">
        <string notr="true">
-QPushButton {
-    background-color: #7f8c8d;
-    color: white;
-    border-radius: 5px;
-    padding: 6px 12px;
-}
-QPushButton:hover {
-    background-color: #95a5a6;
-}
        </string>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="pageUsuarios">
        <layout class="QVBoxLayout">
@@ -361,6 +353,24 @@ QPushButton:hover {
             </property>
            </widget>
           </item>
+          <item>
+           <widget class="QPushButton" name="btnPrestamoBuscar">
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+    background-color: #ecf0f1;
+    color: #2c3e50;
+    border: 1px solid #cfd3dc;
+}
+
+QPushButton:hover {
+    background-color: #e0e4e7;
+}</string>
+            </property>
+            <property name="text">
+             <string>Buscar</string>
+            </property>
+           </widget>
+          </item>
          </layout>
         </item>
         <item>
@@ -378,7 +388,7 @@ QPushButton:hover {
 </string>
           </property>
           <property name="currentIndex">
-           <number>2</number>
+           <number>3</number>
           </property>
           <widget class="QWidget" name="pagePrestamoRegistrar">
            <layout class="QVBoxLayout">
@@ -404,7 +414,18 @@ QPushButton:hover {
              </widget>
             </item>
             <item>
-             <widget class="QDateEdit" name="txtPrestamoFecha"/>
+             <widget class="QDateEdit" name="txtPrestamoFecha">
+              <property name="dateTime">
+               <datetime>
+                <hour>0</hour>
+                <minute>0</minute>
+                <second>0</second>
+                <year>2026</year>
+                <month>1</month>
+                <day>26</day>
+               </datetime>
+              </property>
+             </widget>
             </item>
             <item>
              <widget class="QPushButton" name="btnConfirmarPrestamo">
@@ -425,7 +446,18 @@ QPushButton:hover {
              </widget>
             </item>
             <item>
-             <widget class="QDateEdit" name="txtDevolverFecha"/>
+             <widget class="QDateEdit" name="txtDevolverFecha">
+              <property name="dateTime">
+               <datetime>
+                <hour>11</hour>
+                <minute>0</minute>
+                <second>0</second>
+                <year>2025</year>
+                <month>1</month>
+                <day>26</day>
+               </datetime>
+              </property>
+             </widget>
             </item>
             <item>
              <widget class="QPushButton" name="btnConfirmarDevolucion">
@@ -482,9 +514,93 @@ QPushButton:hover {
             </item>
            </layout>
           </widget>
+          <widget class="QWidget" name="pageBuscarPrestamo">
+           <widget class="QLineEdit" name="txtBuscarPrestamoId">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>10</y>
+              <width>631</width>
+              <height>44</height>
+             </rect>
+            </property>
+            <property name="placeholderText">
+             <string>ID Usuario</string>
+            </property>
+           </widget>
+           <widget class="QPushButton" name="btnBuscar">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>210</y>
+              <width>631</width>
+              <height>35</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>Buscar</string>
+            </property>
+           </widget>
+           <widget class="QTableWidget" name="tablePrestamosBuscados">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>70</y>
+              <width>631</width>
+              <height>121</height>
+             </rect>
+            </property>
+            <property name="editTriggers">
+             <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
+            </property>
+            <property name="dragDropOverwriteMode">
+             <bool>true</bool>
+            </property>
+            <column>
+             <property name="text">
+              <string>ID Préstamo</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>ID Usuario</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>ID Libro</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Fecha Préstamo</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Estado</string>
+             </property>
+            </column>
+           </widget>
+          </widget>
          </widget>
         </item>
        </layout>
+      </widget>
+      <widget class="QWidget" name="pageLibros">
+       <widget class="QLabel" name="label">
+        <property name="geometry">
+         <rect>
+          <x>120</x>
+          <y>70</y>
+          <width>201</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Page Libros</string>
+        </property>
+       </widget>
       </widget>
      </widget>
     </item>

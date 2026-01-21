@@ -23,6 +23,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->btnPrestamos, &QPushButton::clicked, this, [=]() {
         ui->stackedWidget->setCurrentIndex(1);
     });
+
     // Navegación dentro de Préstamos
     connect(ui->btnPrestamoRegistrar, &QPushButton::clicked, this, [=]() {
         ui->stackedPrestamosPages->setCurrentIndex(0);
@@ -36,9 +37,15 @@ MainWindow::MainWindow(QWidget *parent)
         ui->stackedPrestamosPages->setCurrentIndex(2);
     });
 
-    ui->tablePrestamos->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    connect(ui->btnPrestamoBuscar, &QPushButton::clicked, this, [=]() {
+        ui->stackedPrestamosPages->setCurrentIndex(3);
+    });
 
+    ui->tablePrestamos->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->tablePrestamosBuscados->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
+
+
 //Sección Usuarios
 void MainWindow::on_btnCrearUsuario_clicked(){
     Usuario u;
@@ -116,6 +123,22 @@ void MainWindow::on_btnConfirmarDevolucion_clicked()
 
     ui->txtDevolverPrestamoId->clear();
     ui->txtDevolverFecha->clear();
+}
+
+void MainWindow::on_btnRefrescarPrestamos_clicked()
+{
+    ui->tablePrestamos->setRowCount(0);
+
+    QList<Prestamo> lista = listarPrestamos();
+
+    for (int i = 0; i < lista.size(); i++) {
+        ui->tablePrestamos->insertRow(i);
+        ui->tablePrestamos->setItem(i, 0, new QTableWidgetItem(QString::number(lista[i].idPrestamo)));
+        ui->tablePrestamos->setItem(i, 1, new QTableWidgetItem(QString::number(lista[i].idUsuario)));
+        ui->tablePrestamos->setItem(i, 2, new QTableWidgetItem(QString::number(lista[i].idLibro)));
+        ui->tablePrestamos->setItem(i, 3, new QTableWidgetItem(lista[i].fechaPrestamo));
+        ui->tablePrestamos->setItem(i, 4, new QTableWidgetItem(lista[i].estado));
+    }
 }
 
 

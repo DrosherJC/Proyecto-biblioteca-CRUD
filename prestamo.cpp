@@ -76,3 +76,40 @@ bool devolverPrestamo(int idBuscado, const QString &fechaDev){
 
     return true;
 }
+
+
+/*
+  Lee los préstamos del archivo
+  Retorna una lista de préstamos
+ */
+QList<Prestamo> listarPrestamos()
+{
+    QList<Prestamo> lista;
+    QFile archivo(RUTA);
+
+    // Abrir archivo en modo lectura
+    if (!archivo.open(QIODevice::ReadOnly | QIODevice::Text))
+        return lista;
+
+    QTextStream in(&archivo);
+
+    // Leer cada línea del archivo
+    while (!in.atEnd()) {
+        QStringList d = in.readLine().split("|");
+        if (d.size() != 6) continue;
+
+        Prestamo p;
+        p.idPrestamo = d[0].toInt();
+        p.idLibro = d[1].toInt();
+        p.idUsuario = d[2].toInt();
+        p.fechaPrestamo = d[3];
+        p.fechaDevolucion = d[4];
+        p.estado = d[5];
+
+        lista.append(p);
+    }
+
+    archivo.close();
+    return lista;
+}
+

@@ -21,4 +21,8 @@ bool registrarPrestamo(const Prestamo &p);
 // Retorna true si se registró la devolución
 bool devolverPrestamo(int idPrestamo, const QString &fechaDevolucion);
 
+
+// Devuelve una lista con todos los préstamos registrados
+QList<Prestamo> listarPrestamos();
+
 #endif // PRESTAMO_H
