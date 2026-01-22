@@ -25,20 +25,26 @@ void crearUsuario(Usuario &u) {
 // Lee todos los usuarios del archivo y los devuelve como texto
 QString listarUsuarios(){
     QFile archivo("usuarios.txt");
-    QString datos;
 
     // Abrir archivo en modo lectura
     if (!archivo.open(QIODevice::ReadOnly | QIODevice::Text))
         return "No se pudo abrir el archivo";
 
     QTextStream in(&archivo);
+    QString resultado;
+    resultado += "ID\tNombre\tCédula\tCorreo\tTeléfono\n";
+    resultado += "---------------------------------------------\n";
     // Leer línea por línea
     while (!in.atEnd()) {
-        datos += in.readLine() + "\n";
+        QString linea = in.readLine();
+        QStringList datos = linea.split("|");
+        if (datos.size() == 5) {
+            resultado += datos[0] + "\t" + datos[1] + "\t" + datos[2] + "\t" + datos[3] + "\t" + datos[4] + "\n";
+        }
     }
 
     archivo.close();
-    return datos;
+    return resultado;
 }
 
 // Modifica un usuario según el ID
