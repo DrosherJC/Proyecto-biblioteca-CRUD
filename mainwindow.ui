@@ -764,8 +764,14 @@ QPushButton:hover {
          </item>
          <item>
           <widget class="QDateEdit" name="txtAnioNacimiento">
+           <property name="toolTip">
+            <string>Fecha de nacimiento</string>
+           </property>
            <property name="specialValueText">
             <string/>
+           </property>
+           <property name="displayFormat">
+            <string>dd/M/yyyy</string>
            </property>
           </widget>
          </item>
