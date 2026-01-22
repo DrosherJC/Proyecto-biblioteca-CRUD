@@ -48,8 +48,8 @@ void buscarLibros(int idBuscarLibros){
             QString disponible = (datos[4] == "si")? "Disponible" : "No disponible";
             QString info = "ID: " + datos[0] + "\n" + 
                            "Titulo: " + datos[1] + "\n" + 
-                           "Autor: " + datos[2] + "\n" + 
-                           "Anio de publicacion: " + datos[3] + "\n" + 
+                           "Autor: " + datos[2] + "\n" +
+                           "Año de publicacion: " + datos[3] + "\n" +
                            "Estado: " + disponible + "\n";
             QMessageBox::information(nullptr, " Libro encontrado", info);
             encontrado = true;
@@ -82,7 +82,7 @@ QString listarLibros(){
         datos += "ID: " + campos[0] +
                   " | Titulo: " + campos[1] +
                   " | Autor: " + campos[2] +
-                  " | Anio de Publicacion: " + campos[3] +
+                  " | Año de Publicacion: " + campos[3] +
                   " | Estado: " + disponible + "\n";
     }
 

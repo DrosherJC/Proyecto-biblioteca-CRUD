@@ -749,7 +749,7 @@ QPushButton:hover {
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="txtNombre_2">
+          <widget class="QLineEdit" name="txtNombreAutor">
            <property name="placeholderText">
             <string>Nombre</string>
            </property>

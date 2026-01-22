@@ -264,6 +264,226 @@ void MainWindow::on_btnBuscarPrestamos_clicked(){
 
 
 
+
+
+
+//Seccion Libros
+void MainWindow::on_btnCrearLibro_clicked(){
+    //comprobar que ingrese datos
+    if(ui->txtIDLibro->text().isEmpty() || ui->txtTitulo->text().isEmpty() || ui->txtAutor->text().isEmpty() || ui->txtAnioPublicacion->text().isEmpty() || ui->txtDisponible->text().isEmpty()){
+        QMessageBox::warning(this, "Error", "Complete todos los campos");
+        return;
+    }
+    bool ok;
+    int id = ui->txtIDLibro->text().toInt(&ok);
+    if(!ok){
+        QMessageBox::warning(this, "Error", "ID debe ser numerico");
+        return;
+    }
+    libros l;
+    l.idLibro = id;
+    l.titulo = ui->txtTitulo->text();
+    l.autor = ui->txtAutor ->text();
+    bool okAnio;
+    l.anioPublicacion = ui->txtAnioPublicacion->text().toInt(&okAnio);
+    if (!okAnio){
+        QMessageBox::warning(this, "Error", "El año debe ser numérico");
+        return;
+    }
+    QString disp = ui->txtDisponible->text().toLower();
+    if(disp == "1" || disp == "disponible" || disp == "si" || disp == "sí" || disp == "true"){
+        l.disponibilidad = true;
+    } else {
+        l.disponibilidad = false;
+    }
+    crearLibros(l);
+    QMessageBox::information(this, "Exito", "Libro guardado exitosamente");
+    ui->txtIDLibro->clear();
+    ui->txtTitulo->clear();
+    ui->txtAutor->clear();
+    ui->txtAnioPublicacion->clear();
+    ui->txtDisponible->clear();
+}
+
+void MainWindow::on_btnListarLibro_clicked(){
+    QString librosStr = listarLibros();
+    if(librosStr.trimmed().isEmpty()){
+        QMessageBox::information(this, "Libros", "No hay libros registrados");
+        return;
+    }
+    QMessageBox::information(this, "Libros", librosStr);
+}
+
+void MainWindow::on_btnBuscarLibro_clicked(){
+
+    if(ui->txtIDLibro->text().isEmpty()){
+        QMessageBox::warning(this, "Error", "Ingrese el ID del libro a buscar");
+        return;
+    }
+
+    bool ok;
+    int idBuscarLibros = ui->txtIDLibro->text().toInt(&ok);
+    if(!ok){
+        QMessageBox::warning(this, "Error", "El ID del libro es inválido");
+        return;
+    }
+
+    buscarLibros(idBuscarLibros);
+}
+
+void MainWindow::on_btnActualizarLibro_clicked(){
+    if(ui->txtIDLibro->text().isEmpty()){
+        QMessageBox::warning(this, "Error", "Ingrese el ID a modificar");
+        return;
+    }
+    bool ok;
+    int idBuscarLibros = ui->txtIDLibro->text().toInt(&ok);
+
+    if(!ok){
+        QMessageBox::warning(this, "Error", "ID del libro inválido");
+        return;
+    }
+    libros l;
+    l.idLibro = idBuscarLibros;
+    l.titulo = ui->txtTitulo ->text();
+    l.autor = ui->txtAutor->text();
+    bool okAnio;
+    l.anioPublicacion = ui->txtAnioPublicacion->text().toInt(&okAnio);
+    if (!okAnio){
+        QMessageBox::warning(this, "Error", "El año debe ser numérico");
+        return;
+    }
+    QString disp = ui->txtDisponible->text().toLower();
+    if(disp == "1" || disp == "disponible" || disp == "si" || disp == "sí" || disp == "true"){
+        l.disponibilidad = true;
+    } else {
+        l.disponibilidad = false;
+    }
+    actualizarLibros(idBuscarLibros, l);
+    QMessageBox::information(this, "Éxito", "Libro actualizado");
+}
+
+void MainWindow::on_btnEliminarLibro_clicked(){
+    if (ui->txtIDLibro->text().isEmpty()) {
+        QMessageBox::warning(this, "Error", "Ingrese el ID a eliminar");
+        return;
+    }
+
+    bool ok;
+    int idBuscarLibro = ui->txtIDLibro->text().toInt(&ok);
+    if (!ok) {
+        QMessageBox::warning(this, "Error", "ID inválido");
+        return;
+    }
+    if(QMessageBox::question(this, "Confirmar", "¿Seguro que desea eliminar el libro?", QMessageBox::Yes | QMessageBox::No) == QMessageBox::No){
+        return;
+    }
+
+    eliminarLibros(idBuscarLibro);
+
+    QMessageBox::information(this, "Éxito", "Libro eliminado");
+}
+
+
+
+
+//Seccion de autores
+void MainWindow::on_btnCrearAutor_clicked(){
+    //comprobar que ingrese datos
+    if(ui->txtIDAutor->text().isEmpty() || ui->txtNombreAutor->text().isEmpty() || ui->txtNacionalidad->text().isEmpty() || ui->txtAnioNacimiento->text().isEmpty()){
+        QMessageBox::warning(this, "Error", "Complete todos los campos");
+        return;
+    }
+    bool ok;
+    int id = ui->txtIDAutor->text().toInt(&ok);
+    if(!ok){
+        QMessageBox::warning(this, "Error", "ID debe ser numerico");
+        return;
+    }
+
+    autores a;
+    a.idAutor = id;
+    a.nombre = ui->txtNombreAutor->text();
+    a.nacionalidad = ui->txtNacionalidad->text();
+    a.fechaNacimiento = ui->txtAnioNacimiento->text();
+
+    crearAutores(a);
+    QMessageBox::information(this, "Exito", "Autor guardado exitosamente");
+    ui->txtIDAutor->clear();
+    ui->txtNombreAutor->clear();
+    ui->txtNacionalidad->clear();
+    ui->txtAnioNacimiento->clear();
+}
+
+void MainWindow::on_btnListarAutor_clicked(){
+    QString autoresStr = listarAutores();
+    if(autoresStr.trimmed().isEmpty()){
+        QMessageBox::information(this, "Autores", "No hay autores registrados");
+        return;
+    }
+    QMessageBox::information(this, "Autores", autoresStr);
+}
+
+void MainWindow::on_btnBuscarAutor_clicked(){
+
+    if(ui->txtIDAutor->text().isEmpty()){
+        QMessageBox::warning(this, "Error", "Ingrese el ID del autor a buscar");
+        return;
+    }
+
+    bool ok;
+    int idBuscarAutores = ui->txtIDAutor->text().toInt(&ok);
+    if(!ok){
+        QMessageBox::warning(this, "Error", "El ID del autor es inválido");
+        return;
+    }
+    buscarAutores(idBuscarAutores);
+}
+
+void MainWindow::on_btnActualizarAutor_clicked(){
+    if(ui->txtIDAutor->text().isEmpty()){
+        QMessageBox::warning(this, "Error", "Ingrese el ID a modificar");
+        return;
+    }
+    bool ok;
+    int idBuscarAutores = ui->txtIDAutor->text().toInt(&ok);
+
+    if(!ok){
+        QMessageBox::warning(this, "Error", "ID del autor invalido");
+        return;
+    }
+
+    autores a;
+    a.idAutor = idBuscarAutores;
+    a.nombre = ui->txtNombreAutor->text();
+    a.nacionalidad = ui->txtNacionalidad->text();
+    a.fechaNacimiento = ui->txtAnioNacimiento->text();
+    actualizarAutores(idBuscarAutores, a);
+    QMessageBox::information(this, "Éxito", "Autor actualizado");
+}
+
+void MainWindow::on_btnEliminarAutor_clicked(){
+    if (ui->txtIDAutor->text().isEmpty()) {
+        QMessageBox::warning(this, "Error", "Ingrese el ID a eliminar");
+        return;
+    }
+
+    bool ok;
+    int idBuscarAutor = ui->txtIDAutor->text().toInt(&ok);
+    if (!ok) {
+        QMessageBox::warning(this, "Error", "ID inválido");
+        return;
+    }
+    if(QMessageBox::question(this, "Comfirmar", "¿Seguro que desea eliminar el autor?", QMessageBox::Yes | QMessageBox::No) == QMessageBox::No){
+        return;
+    }
+    eliminarAutores(idBuscarAutor);
+
+    QMessageBox::information(this, "Éxito", "Autor eliminado");
+}
+
+
+
 MainWindow::~MainWindow()
 {
     delete ui;  // Libera la memoria de la interfaz de usuario

@@ -31,6 +31,21 @@ private slots:
     void on_btnRefrescarPrestamos_clicked();
     void on_btnBuscarPrestamos_clicked();
 
+
+    void on_btnCrearLibro_clicked();
+    void on_btnListarLibro_clicked();
+    void on_btnBuscarLibro_clicked();
+    void on_btnActualizarLibro_clicked();
+    void on_btnEliminarLibro_clicked();
+
+
+
+    void on_btnCrearAutor_clicked();
+    void on_btnListarAutor_clicked();
+    void on_btnBuscarAutor_clicked();
+    void on_btnActualizarAutor_clicked();
+    void on_btnEliminarAutor_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
