@@ -597,8 +597,8 @@ QPushButton:hover {
        <widget class="QLabel" name="labelUsuarios_2">
         <property name="geometry">
          <rect>
-          <x>20</x>
-          <y>0</y>
+          <x>10</x>
+          <y>-10</y>
           <width>648</width>
           <height>56</height>
          </rect>
@@ -648,35 +648,35 @@ QPushButton:hover {
         </property>
         <layout class="QHBoxLayout" name="_2">
          <item>
-          <widget class="QLineEdit" name="txtId_2">
+          <widget class="QLineEdit" name="txtIDLibro">
            <property name="placeholderText">
             <string> ID Libro</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="txtNombre_2">
+          <widget class="QLineEdit" name="txtTitulo">
            <property name="placeholderText">
             <string>Titulo</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="txtCedula_2">
+          <widget class="QLineEdit" name="txtAutor">
            <property name="placeholderText">
             <string>Autor</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="txtCorreo_2">
+          <widget class="QLineEdit" name="txtAnioPublicacion">
            <property name="placeholderText">
             <string>Año Publicacion</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="txtTelefono_2">
+          <widget class="QLineEdit" name="txtDisponible">
            <property name="placeholderText">
             <string>Disponible</string>
            </property>
@@ -689,34 +689,41 @@ QPushButton:hover {
          <rect>
           <x>70</x>
           <y>90</y>
-          <width>545</width>
+          <width>562</width>
           <height>37</height>
          </rect>
         </property>
         <layout class="QHBoxLayout" name="_3">
          <item>
-          <widget class="QPushButton" name="btnCrearUsuario_2">
+          <widget class="QPushButton" name="btnCrearLibro">
            <property name="text">
-            <string>Crear Libros</string>
+            <string>Crear Libro</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="btnListarUsuarios_2">
+          <widget class="QPushButton" name="btnBuscarLibro">
            <property name="text">
-            <string> Listar Libros</string>
+            <string>Buscar Libro</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="btnModificarUsuario_2">
+          <widget class="QPushButton" name="btnListarLibro">
            <property name="text">
-            <string>Actualizar Libros</string>
+            <string> Listar Libro</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="btnEliminarUsuario_2">
+          <widget class="QPushButton" name="btnActualizarLibro">
+           <property name="text">
+            <string>Actualizar Libro</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btnEliminarLibro">
            <property name="text">
             <string>Eliminar Libro</string>
            </property>
@@ -727,7 +734,7 @@ QPushButton:hover {
        <widget class="QWidget" name="layoutWidget_3">
         <property name="geometry">
          <rect>
-          <x>20</x>
+          <x>10</x>
           <y>190</y>
           <width>650</width>
           <height>41</height>
@@ -735,28 +742,32 @@ QPushButton:hover {
         </property>
         <layout class="QHBoxLayout" name="_4">
          <item>
-          <widget class="QLineEdit" name="txtId_3">
+          <widget class="QLineEdit" name="txtIDAutor">
            <property name="placeholderText">
             <string> ID Autor</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="txtNombre_3">
+          <widget class="QLineEdit" name="txtNombre_2">
            <property name="placeholderText">
             <string>Nombre</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="txtCedula_3">
+          <widget class="QLineEdit" name="txtNacionalidad">
            <property name="placeholderText">
             <string>Nacionalidad</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QDateEdit" name="dateEdit"/>
+          <widget class="QDateEdit" name="txtAnioNacimiento">
+           <property name="specialValueText">
+            <string/>
+           </property>
+          </widget>
          </item>
         </layout>
        </widget>
@@ -808,34 +819,41 @@ QPushButton:hover {
          <rect>
           <x>70</x>
           <y>240</y>
-          <width>545</width>
+          <width>582</width>
           <height>37</height>
          </rect>
         </property>
         <layout class="QHBoxLayout" name="_5">
          <item>
-          <widget class="QPushButton" name="btnCrearUsuario_3">
+          <widget class="QPushButton" name="btnCrearAutor">
            <property name="text">
             <string>Crear Autor</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="btnListarUsuarios_3">
+          <widget class="QPushButton" name="btnBuscarAutor">
+           <property name="text">
+            <string>Buscar Autor</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btnListarAutor">
            <property name="text">
             <string> Listar Autor</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="btnModificarUsuario_3">
+          <widget class="QPushButton" name="btnActualizarAutor">
            <property name="text">
             <string>Actualizar Autor</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="btnEliminarUsuario_3">
+          <widget class="QPushButton" name="btnEliminarAutor">
            <property name="text">
             <string>Eliminar Autor</string>
            </property>

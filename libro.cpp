@@ -46,7 +46,7 @@ void buscarLibros(int idBuscarLibros){
 
         if (datos[0].toInt() == idBuscarLibros) {
             QString disponible = (datos[4] == "si")? "Disponible" : "No disponible";
-            QString info = "\n" + "ID: " + datos[0] + "\n" + 
+            QString info = "ID: " + datos[0] + "\n" + 
                            "Titulo: " + datos[1] + "\n" + 
                            "Autor: " + datos[2] + "\n" + 
                            "Anio de publicacion: " + datos[3] + "\n" + 
@@ -177,7 +177,7 @@ void buscarAutores(int idBuscarAutor){
         }
 
         if (datos[0].toInt() == idBuscarAutor) {
-            QString info = "\n" + "ID: " + datos[0] + "\n" + 
+            QString info = "ID: " + datos[0] + "\n" + 
                            "Nombre: " + datos[1] + "\n" + 
                            "Nacionalidad: " + datos[2] + "\n" + 
                            "Fecha de nacimiento: " + datos[3] + "\n";

@@ -23,7 +23,7 @@ void actualizarLibros(int idBuscarLibros, const libros &l);
 void eliminarLibros(int idBuscarLibros);
 
 void crearAutores(const autores &a);
-void buscarAutores(int idBuscarAutor)
+void buscarAutores(int idBuscarAutor);
 QString listarAutores();
 void actualizarAutores(int idBuscarAutor, const autores &a);
 void eliminarAutores(int idBuscarAutor);
