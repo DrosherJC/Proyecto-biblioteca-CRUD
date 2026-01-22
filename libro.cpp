@@ -28,6 +28,40 @@ void crearLibros(const libros &l) {
     archivo.close();
 }
 
+void buscarLibros(int idBuscarLibros){
+    QFile archivo("libros.txt");
+    if(!archivo.open(QIODevice::ReadOnly | QIODevice::Text)){
+        QMessageBox::warning(nullptr, "Error", "No se pudo abrir el archivo de libros");
+        return;
+    }
+    QTextStream in(&archivo);
+    bool encontrado = false;
+
+    while(!in.atEnd()){
+        QString linea = in.readLine();
+        QStringList datos = linea.split("|");
+        if(datos.size() < 5){
+            continue;
+        }
+
+        if (datos[0].toInt() == idBuscarLibros) {
+            QString disponible = (datos[4] == "si")? "Disponible" : "No disponible";
+            QString info = "\n" + "ID: " + datos[0] + "\n" + 
+                           "Titulo: " + datos[1] + "\n" + 
+                           "Autor: " + datos[2] + "\n" + 
+                           "Anio de publicacion: " + datos[3] + "\n" + 
+                           "Estado: " + disponible + "\n";
+            QMessageBox::information(nullptr, " Libro encontrado", info);
+            encontrado = true;
+            break;
+        }
+    }
+    archivo.close();
+    if(!encontrado){
+        QMessageBox::warning(nullptr, "No encontrado", "No existe un libro con ese ID ");
+    }
+}
+
 QString listarLibros(){
     QFile archivo("libros.txt");
     QString datos;
@@ -124,6 +158,38 @@ void crearAutores(const autores &a){
         << a.nacionalidad << "|"
         << a.fechaNacimiento << "\n";
     archivo.close();
+}
+
+void buscarAutores(int idBuscarAutor){
+    QFile archivo("autores.txt");
+    if(!archivo.open(QIODevice::ReadOnly | QIODevice::Text)){
+        QMessageBox::warning(nullptr, "Error", "No se pudo abrir el archivo de autores");
+        return;
+    }
+    QTextStream in(&archivo);
+    bool encontrado = false;
+
+    while(!in.atEnd()){
+        QString linea = in.readLine();
+        QStringList datos = linea.split("|");
+        if(datos.size() < 4){
+            continue;
+        }
+
+        if (datos[0].toInt() == idBuscarAutor) {
+            QString info = "\n" + "ID: " + datos[0] + "\n" + 
+                           "Nombre: " + datos[1] + "\n" + 
+                           "Nacionalidad: " + datos[2] + "\n" + 
+                           "Fecha de nacimiento: " + datos[3] + "\n";
+            QMessageBox::information(nullptr, "Autor encontrado", info);
+            encontrado = true;
+            break;
+        }
+    }
+    archivo.close();
+    if(!encontrado){
+        QMessageBox::warning(nullptr, "No encontrado", "No existe un autor con ese ID ");
+    }
 }
 
 QString listarAutores(){
