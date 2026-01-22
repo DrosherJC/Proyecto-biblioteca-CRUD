@@ -22,6 +22,8 @@ private slots:
     void on_btnListarUsuarios_clicked();
     void on_btnModificarUsuario_clicked();
     void on_btnEliminarUsuario_clicked();
+    void on_btnBuscarUsuario_clicked();
+
 
 
     void on_btnConfirmarPrestamo_clicked();

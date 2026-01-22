@@ -6,6 +6,9 @@
 #include "prestamo.h"
 #include "libro.h"
 
+// Archivo: mainwindow.cpp
+// Descripción: Interfaz gráfica y control de eventos de usuarios
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -47,9 +50,31 @@ MainWindow::MainWindow(QWidget *parent)
 
 
 //Sección Usuarios
-void MainWindow::on_btnCrearUsuario_clicked(){
+
+// Evento del botón Crear Usuario
+void MainWindow::on_btnCrearUsuario_clicked()
+{
+    // Validar campos vacíos
+    if (ui->txtId->text().isEmpty() ||ui->txtNombre->text().isEmpty() ||ui->txtCedula->text().isEmpty() ||ui->txtCorreo->text().isEmpty() || ui->txtTelefono->text().isEmpty())
+    {
+        QMessageBox::warning(this, "Error", "Complete todos los campos");
+        return;
+    }
+
+    bool ok;
+    int id = ui->txtId->text().toInt(&ok);
+    if (!ok) {
+        QMessageBox::warning(this, "Error", "ID debe ser numérico");
+        return;
+    }
+
+    if (!ui->txtCorreo->text().contains("@")) {
+        QMessageBox::warning(this, "Error", "Correo inválido");
+        return;
+    }
+
     Usuario u;
-    u.id = ui->txtId->text().toInt();
+    u.id = id;
     u.nombre = ui->txtNombre->text();
     u.cedula = ui->txtCedula->text();
     u.correo = ui->txtCorreo->text();
@@ -59,27 +84,91 @@ void MainWindow::on_btnCrearUsuario_clicked(){
 
     QMessageBox::information(this, "Éxito", "Usuario guardado correctamente");
 }
-void MainWindow::on_btnListarUsuarios_clicked(){
+
+// Evento del botón Listar Usuarios
+void MainWindow::on_btnListarUsuarios_clicked()
+{
     QString datos = listarUsuarios();
+
+    if (datos.trimmed().isEmpty()) {
+        QMessageBox::information(this, "Usuarios", "No hay usuarios registrados");
+        return;
+    }
+
     QMessageBox::information(this, "Usuarios", datos);
 }
 
-void MainWindow::on_btnModificarUsuario_clicked(){
+// Evento del botón Modificar Usuario
+void MainWindow::on_btnModificarUsuario_clicked()
+{
+    if (ui->txtId->text().isEmpty()) {
+        QMessageBox::warning(this, "Error", "Ingrese el ID a modificar");
+        return;
+    }
+
+    bool ok;
+    int id = ui->txtId->text().toInt(&ok);
+    if (!ok) {
+        QMessageBox::warning(this, "Error", "ID inválido");
+        return;
+    }
+
     Usuario u;
-    u.id = ui->txtId->text().toInt();
+    u.id = id;
     u.nombre = ui->txtNombre->text();
     u.cedula = ui->txtCedula->text();
     u.correo = ui->txtCorreo->text();
     u.telefono = ui->txtTelefono->text();
 
-   // modificarUsuario(u.id,u);
+    modificarUsuario(id,u);
 
-    QMessageBox::information(this, "Ok", "Usuario modificado");
+
+    QMessageBox::information(this, "Éxito", "Usuario modificado");
 }
 
+// Evento del botón Eliminar Usuario
 void MainWindow::on_btnEliminarUsuario_clicked()
 {
-    QMessageBox::information(this, "Info", "Eliminar usuario aún no implementado");
+    if (ui->txtId->text().isEmpty()) {
+        QMessageBox::warning(this, "Error", "Ingrese el ID a eliminar");
+        return;
+    }
+
+    bool ok;
+    int id = ui->txtId->text().toInt(&ok);
+    if (!ok) {
+        QMessageBox::warning(this, "Error", "ID inválido");
+        return;
+    }
+
+    eliminarUsuario(id);
+
+    QMessageBox::information(this, "Éxito", "Usuario eliminado");
+}
+
+// Evento del botón Buscar Usuario
+void MainWindow::on_btnBuscarUsuario_clicked()
+{
+    if (ui->txtId->text().isEmpty()) {
+        QMessageBox::warning(this, "Error", "Ingrese el ID a buscar");
+        return;
+    }
+
+    bool ok;
+    int id = ui->txtId->text().toInt(&ok);
+    if (!ok) {
+        QMessageBox::warning(this, "Error", "ID inválido");
+        return;
+    }
+
+    QString resultado = buscarUsuario(id);
+
+    if (resultado.isEmpty()) {
+        QMessageBox::information(this, "Buscar", "Usuario no encontrado");
+        return;
+    }
+
+    QMessageBox::information(this, "Usuario encontrado", resultado);
 }
 
 

@@ -12,7 +12,8 @@ struct Usuario {
 
 void crearUsuario(Usuario &u);
 QString listarUsuarios();
-void modificarUsuario(int idBuscado, const Usuario &u);
+void modificarUsuario(int id, Usuario u);
 void eliminarUsuario(int id);
+QString buscarUsuario(int id);
 
 #endif

@@ -177,11 +177,10 @@ QScrollBar::handle:vertical:hover {
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="styleSheet">
-       <string notr="true">
-       </string>
+       <string notr="true"/>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="pageUsuarios">
        <layout class="QVBoxLayout">
@@ -288,6 +287,13 @@ QScrollBar::handle:vertical:hover {
            <widget class="QPushButton" name="btnEliminarUsuario">
             <property name="text">
              <string>Eliminar</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnBuscarUsuario">
+            <property name="text">
+             <string>Buscar</string>
             </property>
            </widget>
           </item>
@@ -417,7 +423,7 @@ QPushButton:hover {
              <widget class="QDateEdit" name="txtPrestamoFecha">
               <property name="dateTime">
                <datetime>
-                <hour>0</hour>
+                <hour>5</hour>
                 <minute>0</minute>
                 <second>0</second>
                 <year>2026</year>
@@ -449,7 +455,7 @@ QPushButton:hover {
              <widget class="QDateEdit" name="txtDevolverFecha">
               <property name="dateTime">
                <datetime>
-                <hour>11</hour>
+                <hour>16</hour>
                 <minute>0</minute>
                 <second>0</second>
                 <year>2025</year>
