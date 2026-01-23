@@ -17,7 +17,11 @@ void crearUsuario(Usuario &u) {
 
     QTextStream out(&archivo);
     // Escribir datos separados por |
-    out << u.id << "|" << u.nombre << "|" << u.cedula << "|" << u.correo << "|" << u.telefono << "\n";
+    out << u.id << "|"
+        << u.nombre << "|"
+        << u.cedula << "|"
+        << u.correo << "|"
+        << u.telefono << "\n";
 
     archivo.close();
 }
@@ -25,27 +29,35 @@ void crearUsuario(Usuario &u) {
 // Lee todos los usuarios del archivo y los devuelve como texto
 QString listarUsuarios(){
     QFile archivo("usuarios.txt");
+    QString datos;
 
-    // Abrir archivo en modo lectura
-    if (!archivo.open(QIODevice::ReadOnly | QIODevice::Text))
-        return "No se pudo abrir el archivo";
-
-    QTextStream in(&archivo);
-    QString resultado;
-    resultado += "ID\tNombre\tCédula\tCorreo\tTeléfono\n";
-    resultado += "---------------------------------------------\n";
-    // Leer línea por línea
-    while (!in.atEnd()) {
-        QString linea = in.readLine();
-        QStringList datos = linea.split("|");
-        if (datos.size() == 5) {
-            resultado += datos[0] + "\t" + datos[1] + "\t" + datos[2] + "\t" + datos[3] + "\t" + datos[4] + "\n";
-        }
+    // Abre el archivo en modo lectura
+    if (!archivo.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        return "";
     }
 
+    QTextStream in(&archivo);
+
+    // Lee cada línea del archivo
+    while (!in.atEnd()) {
+        QStringList campos = in.readLine().split("|");
+
+        // Verifica que la línea sea válida
+        if (campos.size() != 5) continue;
+
+        // Agrega la información al texto final
+        datos += "ID: " + campos[0] +
+                 " | Nombre: " + campos[1] +
+                 " | Cédula: " + campos[2] +
+                 " | Correo: " + campos[3] +
+                 " | Teléfono: " + campos[4] + "\n";
+    }
+
+    // Cierra el archivo
     archivo.close();
-    return resultado;
+    return datos;
 }
+
 
 // Modifica un usuario según el ID
 void modificarUsuario(int id, Usuario u) {
@@ -83,8 +95,7 @@ void modificarUsuario(int id, Usuario u) {
 }
 
 // Elimina un usuario según el ID
-void eliminarUsuario(int id)
-{
+void eliminarUsuario(int id){
     QFile archivo("usuarios.txt");
     QFile temp("temp.txt");
 
@@ -115,8 +126,7 @@ void eliminarUsuario(int id)
 }
 
 // Busca un usuario por ID
-QString buscarUsuario(int id)
-{
+QString buscarUsuario(int id){
     QFile archivo("usuarios.txt");
     QString resultado;
 
@@ -130,7 +140,11 @@ QString buscarUsuario(int id)
         QStringList datos = linea.split("|");
 
         if (datos[0].toInt() == id) {
-            resultado = "ID: " + datos[0] + "\n" + "Nombre: " + datos[1] + "\n" + "Cédula: " + datos[2] + "\n" + "Correo: " + datos[3] + "\n"+ "Teléfono: " + datos[4];
+            resultado = "ID: " + datos[0]
+                        + "\n" + "Nombre: " + datos[1]
+                        + "\n" + "Cédula: " + datos[2]
+                        + "\n" + "Correo: " + datos[3]
+                        + "\n"+ "Teléfono: " + datos[4];
             break;
         }
     }

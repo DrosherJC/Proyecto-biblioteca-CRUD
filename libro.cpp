@@ -6,95 +6,113 @@
 #include <QMessageBox>
 #include <QString>
 
+// Función para crear un nuevo libro
 void crearLibros(const libros &l) {
-    //Abre el archivo
+    // Abre el archivo de libros en modo escritura (agregar)
     QFile archivo("libros.txt");
     if (!archivo.open(QIODevice::Append | QIODevice::Text)){
-        //QMessageBox sirve para mensajes de error con el uso del warning
-        //nullptr indica que el mensaje no esta asociado a alguna ventana
-        QMessageBox :: warning(nullptr, "Error" , "No se pudo abrir el archivo de libros");
+        // Muestra un mensaje si no se puede abrir el archivo
+        QMessageBox::warning(nullptr, "Error" , "No se pudo abrir el archivo de libros");
         return;
     }
-    //Crea un stream de salida, para poder escribir dentro del archivo usando el out
+
+    // Stream para escribir en el archivo
     QTextStream out(&archivo);
-    //Escribe el texto 
-    out << l.idLibro 
-        << "|"<< l.titulo
-        << "|"<< l.autor 
-        << "|"<< l.anioPublicacion 
-        << "|"<< (l.disponibilidad ? "si" : "no" ) << "\n";
-   
-    //Cierra el archivo
+
+    // Guarda los datos del libro separados por |
+    out << l.idLibro
+        << "|" << l.titulo
+        << "|" << l.autor
+        << "|" << l.anioPublicacion
+        << "\n";
+
+    // Cierra el archivo
     archivo.close();
 }
 
+// Función para buscar un libro por ID
 void buscarLibros(int idBuscarLibros){
+    // Abre el archivo en modo lectura
     QFile archivo("libros.txt");
     if(!archivo.open(QIODevice::ReadOnly | QIODevice::Text)){
         QMessageBox::warning(nullptr, "Error", "No se pudo abrir el archivo de libros");
         return;
     }
+
     QTextStream in(&archivo);
     bool encontrado = false;
 
+    // Recorre el archivo línea por línea
     while(!in.atEnd()){
-        QString linea = in.readLine();
-        QStringList datos = linea.split("|");
-        if(datos.size() < 5){
-            continue;
-        }
+        QStringList datos = in.readLine().split("|");
 
+        // Verifica que la línea tenga el formato correcto
+        if(datos.size() != 4) continue;
+
+        // Comprueba si el ID coincide
         if (datos[0].toInt() == idBuscarLibros) {
-            QString disponible = (datos[4] == "si")? "Disponible" : "No disponible";
-            QString info = "ID: " + datos[0] + "\n" + 
-                           "Titulo: " + datos[1] + "\n" + 
-                           "Autor: " + datos[2] + "\n" +
-                           "Año de publicacion: " + datos[3] + "\n" +
-                           "Estado: " + disponible + "\n";
-            QMessageBox::information(nullptr, " Libro encontrado", info);
+
+            // Arma el mensaje con la información del libro
+            QString info =
+                "ID: " + datos[0] + "\n" +
+                "Título: " + datos[1] + "\n" +
+                "Autor: " + datos[2] + "\n" +
+                "Año de publicación: " + datos[3];
+
+            // Muestra la información
+            QMessageBox::information(nullptr, "Libro encontrado", info);
             encontrado = true;
             break;
         }
     }
+    // Cierra el archivo
     archivo.close();
+
+    // Mensaje si no se encontró el libro
     if(!encontrado){
-        QMessageBox::warning(nullptr, "No encontrado", "No existe un libro con ese ID ");
+        QMessageBox::warning(nullptr, "No encontrado", "No existe un libro con ese ID");
     }
 }
 
+// Función para listar todos los libros
 QString listarLibros(){
     QFile archivo("libros.txt");
     QString datos;
 
+    // Abre el archivo en modo lectura
     if (!archivo.open(QIODevice::ReadOnly | QIODevice::Text)){
         QMessageBox::warning(nullptr, "Error", "No se pudo abrir el archivo de libros");
-        return "No se pudo abrir el archivo";
+        return "";
     }
 
     QTextStream in(&archivo);
-    while (!in.atEnd()) {
-        QString linea = in.readLine();
-        QStringList campos = linea.split("|");
-        if(campos.size() < 5){
-            continue;
-        }
-        QString disponible = (campos[4] == "si")? "Disponible" : "No disponible";
-        datos += "ID: " + campos[0] +
-                  " | Titulo: " + campos[1] +
-                  " | Autor: " + campos[2] +
-                  " | Año de Publicacion: " + campos[3] +
-                  " | Estado: " + disponible + "\n";
-    }
 
+    // Lee cada línea del archivo
+    while (!in.atEnd()) {
+        QStringList campos = in.readLine().split("|");
+
+        // Verifica que la línea sea válida
+        if(campos.size() != 4) continue;
+
+        // Agrega la información al texto final
+        datos += "ID: " + campos[0] +
+                 " | Título: " + campos[1] +
+                 " | Autor: " + campos[2] +
+                 " | Año: " + campos[3] + "\n";
+    }
+    // Cierra el archivo
     archivo.close();
     return datos;
 }
 
+// Función para actualizar un libro existente
 void actualizarLibros(int idBuscarLibros, const libros &l){
-	QFile archivo("libros.txt");
+    QFile archivo("libros.txt");
     QFile archTemp("temp.txt");
 
-    if (!archivo.open(QIODevice::ReadOnly | QIODevice::Text) ||!archTemp.open(QIODevice::WriteOnly | QIODevice::Text)){
+    // Abre el archivo original y el temporal
+    if (!archivo.open(QIODevice::ReadOnly | QIODevice::Text) ||
+        !archTemp.open(QIODevice::WriteOnly | QIODevice::Text)){
         QMessageBox::warning(nullptr, "Error", "No se pudo abrir el archivo de libros");
         return;
     }
@@ -102,176 +120,60 @@ void actualizarLibros(int idBuscarLibros, const libros &l){
     QTextStream in(&archivo);
     QTextStream out(&archTemp);
 
+    // Recorre todos los libros
     while (!in.atEnd()) {
         QString linea = in.readLine();
         QStringList datos = linea.split("|");
 
-        if (datos[0].toInt() == idBuscarLibros) {
+        // Si es el libro buscado, se actualiza
+        if (datos.size() == 4 && datos[0].toInt() == idBuscarLibros) {
             out << l.idLibro << "|"
                 << l.titulo << "|"
                 << l.autor << "|"
-                << l.anioPublicacion << "|"
-                << (l.disponibilidad ? "si" : "no") << "\n";
+                << l.anioPublicacion << "\n";
         } else {
+            // Si no, se copia sin cambios
             out << linea << "\n";
         }
     }
+    // Cierra archivos
     archivo.close();
     archTemp.close();
+
+    // Reemplaza el archivo original
     archivo.remove();
     archTemp.rename("libros.txt");
 }
 
+// Función para eliminar un libro por ID
 void eliminarLibros(int idBuscarLibros){
     QFile archivo("libros.txt");
     QFile archTemp("temp.txt");
-    if(!archivo.open(QIODevice::ReadOnly | QIODevice::Text)||!archTemp.open(QIODevice::WriteOnly | QIODevice::Text)){
+
+    // Abre el archivo original y el temporal
+    if(!archivo.open(QIODevice::ReadOnly | QIODevice::Text) ||
+        !archTemp.open(QIODevice::WriteOnly | QIODevice::Text)){
         QMessageBox::warning(nullptr, "Error", "No se pudo abrir el archivo de libros");
-       return;
+        return;
     }
 
     QTextStream in(&archivo);
     QTextStream out(&archTemp);
+
+    // Copia todos los libros excepto el que se va a eliminar
     while(!in.atEnd()){
         QString linea = in.readLine();
         QStringList datos = linea.split("|");
+
         if(datos[0].toInt() != idBuscarLibros){
             out << linea << "\n";
         }
     }
+    // Cierra archivos
     archivo.close();
     archTemp.close();
+
+    // Reemplaza el archivo original
     archivo.remove();
     archTemp.rename("libros.txt");
-}
-
-
-void crearAutores(const autores &a){
-    QFile archivo("autores.txt");
-    if(!archivo.open(QIODevice::Append | QIODevice::Text)){
-        QMessageBox::warning(nullptr, "Error", "No se pudo abrir el archivo de autores");
-        return;
-    }
-    QTextStream out(&archivo);
-    out << a.idAutor << "|"
-        << a.nombre << "|"
-        << a.nacionalidad << "|"
-        << a.fechaNacimiento << "\n";
-    archivo.close();
-}
-
-void buscarAutores(int idBuscarAutor){
-    QFile archivo("autores.txt");
-    if(!archivo.open(QIODevice::ReadOnly | QIODevice::Text)){
-        QMessageBox::warning(nullptr, "Error", "No se pudo abrir el archivo de autores");
-        return;
-    }
-    QTextStream in(&archivo);
-    bool encontrado = false;
-
-    while(!in.atEnd()){
-        QString linea = in.readLine();
-        QStringList datos = linea.split("|");
-        if(datos.size() < 4){
-            continue;
-        }
-
-        if (datos[0].toInt() == idBuscarAutor) {
-            QString info = "ID: " + datos[0] + "\n" + 
-                           "Nombre: " + datos[1] + "\n" + 
-                           "Nacionalidad: " + datos[2] + "\n" + 
-                           "Fecha de nacimiento: " + datos[3] + "\n";
-            QMessageBox::information(nullptr, "Autor encontrado", info);
-            encontrado = true;
-            break;
-        }
-    }
-    archivo.close();
-    if(!encontrado){
-        QMessageBox::warning(nullptr, "No encontrado", "No existe un autor con ese ID ");
-    }
-}
-
-QString listarAutores(){
-    QFile archivo("autores.txt");
-    QString datos;
-
-    if (!archivo.open(QIODevice::ReadOnly | QIODevice::Text)){
-        QMessageBox::warning(nullptr, "Error", "No se pudo abrir el archivo de autores");
-        return "No se pudo abrir el archivo";
-    }
-
-    QTextStream in(&archivo);
-
-    while (!in.atEnd()) {
-        QString linea = in.readLine();
-        QStringList campos = linea.split("|");
-        if(campos.size() < 4){
-            continue;
-        }
-
-        datos += "ID: " + campos[0] +
-                 " | Nombre: " + campos[1] +
-                 " | Nacionalidad: " + campos[2] +
-                 " | Fecha de Nacimiento: " + campos[3] + "\n";
-    }
-
-    archivo.close();
-    return datos;
-}
-
-void actualizarAutores(int idBuscarAutor, const autores &a){
-	QFile archivo("autores.txt");
-    QFile archTemp("temp.txt");
-
-    if (!archivo.open(QIODevice::ReadOnly | QIODevice::Text) ||!archTemp.open(QIODevice::WriteOnly | QIODevice::Text)){
-        QMessageBox::warning(nullptr, "Error", "No se pudo abrir el archivo de autores");
-        return;
-    }
-
-    QTextStream in(&archivo);
-    QTextStream out(&archTemp);
-
-    while (!in.atEnd()) {
-        QString linea = in.readLine();
-        QStringList datos = linea.split("|");
-
-        if (datos[0].toInt() == idBuscarAutor) {
-            out << a.idAutor 
-                << "|"<< a.nombre 
-                << "|"<< a.nacionalidad 
-                << "|"<< a.fechaNacimiento 
-                << "\n";
-        } else {
-            out << linea << "\n";
-        }
-    }
-    archivo.close();
-    archTemp.close();
-    archivo.remove();
-    archTemp.rename("autores.txt");
-}
-
-void eliminarAutores(int idBuscarAutor){
-    QFile archivo("autores.txt");
-    QFile archTemp("temp.txt");
-    if(!archivo.open(QIODevice::ReadOnly | QIODevice::Text)||!archTemp.open(QIODevice::WriteOnly | QIODevice::Text)){
-        QMessageBox::warning(nullptr, "Error", "No se pudo abrir el archivo de autores");
-       return;
-    }
-
-    QTextStream in(&archivo);
-    QTextStream out(&archTemp);
-
-    while(!in.atEnd()){
-        QString linea = in.readLine();
-        QStringList datos = linea.split("|");
-        if(datos[0].toInt() != idBuscarAutor){
-            out << linea << "\n";
-        }
-    }
-    archivo.close();
-    archTemp.close();
-    archivo.remove();
-    archTemp.rename("autores.txt");
 }

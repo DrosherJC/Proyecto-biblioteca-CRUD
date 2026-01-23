@@ -39,13 +39,6 @@ private slots:
     void on_btnEliminarLibro_clicked();
 
 
-
-    void on_btnCrearAutor_clicked();
-    void on_btnListarAutor_clicked();
-    void on_btnBuscarAutor_clicked();
-    void on_btnActualizarAutor_clicked();
-    void on_btnEliminarAutor_clicked();
-
 private:
     Ui::MainWindow *ui;
 };

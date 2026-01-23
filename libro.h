@@ -7,7 +7,6 @@ struct libros{
     QString titulo;
     QString autor;
     int anioPublicacion;
-    bool disponibilidad;
 };
 struct autores{
     int idAutor;

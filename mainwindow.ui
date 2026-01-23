@@ -239,6 +239,9 @@ QScrollBar::handle:vertical:hover {
           </item>
           <item>
            <widget class="QLineEdit" name="txtCedula">
+            <property name="maxLength">
+             <number>10</number>
+            </property>
             <property name="placeholderText">
              <string>Cédula</string>
             </property>
@@ -253,6 +256,9 @@ QScrollBar::handle:vertical:hover {
           </item>
           <item>
            <widget class="QLineEdit" name="txtTelefono">
+            <property name="maxLength">
+             <number>10</number>
+            </property>
             <property name="placeholderText">
              <string>Teléfono</string>
             </property>
@@ -394,7 +400,7 @@ QPushButton:hover {
 </string>
           </property>
           <property name="currentIndex">
-           <number>0</number>
+           <number>1</number>
           </property>
           <widget class="QWidget" name="pagePrestamoRegistrar">
            <layout class="QVBoxLayout">
@@ -423,7 +429,7 @@ QPushButton:hover {
              <widget class="QDateEdit" name="txtPrestamoFecha">
               <property name="dateTime">
                <datetime>
-                <hour>10</hour>
+                <hour>15</hour>
                 <minute>0</minute>
                 <second>0</second>
                 <year>2026</year>
@@ -455,7 +461,7 @@ QPushButton:hover {
              <widget class="QDateEdit" name="txtDevolverFecha">
               <property name="dateTime">
                <datetime>
-                <hour>21</hour>
+                <hour>2</hour>
                 <minute>0</minute>
                 <second>0</second>
                 <year>2025</year>
@@ -597,9 +603,9 @@ QPushButton:hover {
        <widget class="QLabel" name="labelUsuarios_2">
         <property name="geometry">
          <rect>
-          <x>10</x>
-          <y>-10</y>
-          <width>648</width>
+          <x>7</x>
+          <y>20</y>
+          <width>661</width>
           <height>56</height>
          </rect>
         </property>
@@ -617,7 +623,7 @@ QPushButton:hover {
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">QLabel#labelUsuarios {
+         <string notr="true">QLabel {
     background-color: #e9eef6;
     color: #1f3a5f;
     font-size: 18px;
@@ -641,9 +647,9 @@ QPushButton:hover {
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>40</y>
-          <width>650</width>
-          <height>37</height>
+          <y>80</y>
+          <width>651</width>
+          <height>111</height>
          </rect>
         </property>
         <layout class="QHBoxLayout" name="_2">
@@ -675,22 +681,15 @@ QPushButton:hover {
            </property>
           </widget>
          </item>
-         <item>
-          <widget class="QLineEdit" name="txtDisponible">
-           <property name="placeholderText">
-            <string>Disponible</string>
-           </property>
-          </widget>
-         </item>
         </layout>
        </widget>
        <widget class="QWidget" name="layoutWidget_2">
         <property name="geometry">
          <rect>
-          <x>70</x>
-          <y>90</y>
-          <width>562</width>
-          <height>37</height>
+          <x>10</x>
+          <y>200</y>
+          <width>651</width>
+          <height>101</height>
          </rect>
         </property>
         <layout class="QHBoxLayout" name="_3">
@@ -726,142 +725,6 @@ QPushButton:hover {
           <widget class="QPushButton" name="btnEliminarLibro">
            <property name="text">
             <string>Eliminar Libro</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QWidget" name="layoutWidget_3">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>190</y>
-          <width>650</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <layout class="QHBoxLayout" name="_4">
-         <item>
-          <widget class="QLineEdit" name="txtIDAutor">
-           <property name="placeholderText">
-            <string> ID Autor</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="txtNombreAutor">
-           <property name="placeholderText">
-            <string>Nombre</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="txtNacionalidad">
-           <property name="placeholderText">
-            <string>Nacionalidad</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QDateEdit" name="txtAnioNacimiento">
-           <property name="toolTip">
-            <string>Fecha de nacimiento</string>
-           </property>
-           <property name="specialValueText">
-            <string/>
-           </property>
-           <property name="displayFormat">
-            <string>dd/M/yyyy</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QLabel" name="labelUsuarios_3">
-        <property name="geometry">
-         <rect>
-          <x>30</x>
-          <y>130</y>
-          <width>648</width>
-          <height>56</height>
-         </rect>
-        </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="font">
-         <font>
-          <family>Segoe UI</family>
-          <pointsize>-1</pointsize>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QLabel#labelUsuarios {
-    background-color: #e9eef6;
-    color: #1f3a5f;
-    font-size: 18px;
-    font-weight: bold;
-    padding: 8px;
-    border-radius: 6px;
-    min-height: 40px;
-    max-height: 40px;
-    qproperty-alignment: AlignCenter;
-}
-</string>
-        </property>
-        <property name="text">
-         <string>Gestión de Autores</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignmentFlag::AlignCenter</set>
-        </property>
-       </widget>
-       <widget class="QWidget" name="layoutWidget_4">
-        <property name="geometry">
-         <rect>
-          <x>70</x>
-          <y>240</y>
-          <width>582</width>
-          <height>37</height>
-         </rect>
-        </property>
-        <layout class="QHBoxLayout" name="_5">
-         <item>
-          <widget class="QPushButton" name="btnCrearAutor">
-           <property name="text">
-            <string>Crear Autor</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="btnBuscarAutor">
-           <property name="text">
-            <string>Buscar Autor</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="btnListarAutor">
-           <property name="text">
-            <string> Listar Autor</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="btnActualizarAutor">
-           <property name="text">
-            <string>Actualizar Autor</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="btnEliminarAutor">
-           <property name="text">
-            <string>Eliminar Autor</string>
            </property>
           </widget>
          </item>
