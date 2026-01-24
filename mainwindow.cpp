@@ -190,8 +190,7 @@ void MainWindow::on_btnConfirmarPrestamo_clicked(){
     if (registrarPrestamo(p))
         QMessageBox::information(this, "Éxito", "Préstamo registrado");
     else
-        QMessageBox::warning(this, "Error",
-                             "No se pudo registrar.\nVerifique que el usuario y el libro existan.");
+        QMessageBox::warning(this, "Error","No se pudo registrar.\nVerifique que el usuario y el libro existan.");
 
     ui->txtPrestamoId->clear();
     ui->txtPrestamoLibro->clear();
@@ -200,14 +199,12 @@ void MainWindow::on_btnConfirmarPrestamo_clicked(){
 }
 
 void MainWindow::on_btnConfirmarDevolucion_clicked(){
-    if (devolverPrestamo(ui->txtDevolverPrestamoId->text().toInt(),
-                         ui->txtDevolverFecha->text()))
+    if (devolverPrestamo(ui->txtDevolverPrestamoId->text().toInt(),ui->txtDevolverFecha->text()))
     {
         QMessageBox::information(this, "Éxito", "Préstamo devuelto");
     }
     else {
-        QMessageBox::warning(this, "Error",
-                             "No se pudo registrar.\nVerifique que el libro exista o que no esté devuelto.");
+        QMessageBox::warning(this, "Error","No se pudo registrar.\nVerifique que el libro exista o que no esté devuelto.");
     }
 
     ui->txtDevolverPrestamoId->clear();
@@ -230,6 +227,11 @@ void MainWindow::on_btnRefrescarPrestamos_clicked(){
 }
 
 void MainWindow::on_btnBuscarPrestamos_clicked(){
+    if(ui->txtBuscarPrestamoId->text().isEmpty()){
+        QMessageBox::warning(this,"Error","Ingrese el ID a buscar.");
+        return;
+    }
+
     ui->tablePrestamosBuscados->setRowCount(0);
 
     int idBuscado = ui->txtBuscarPrestamoId->text().toInt();

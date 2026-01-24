@@ -4,9 +4,6 @@
 #include <QTextStream>
 #include <QStringList>
 
-// Archivo: usuario.cpp
-// Descripción: Manejo CRUD de usuarios usando archivo de texto
-
 // Guarda un usuario en el archivo usuarios.txt
 void crearUsuario(Usuario &u) {
 
@@ -80,7 +77,11 @@ void modificarUsuario(int id, Usuario u) {
         if (datos[0].toInt() == id){
 
             // Reemplazar datos
-            out << u.id << "|" << u.nombre << "|"<< u.cedula << "|" << u.correo << "|" << u.telefono << "\n";
+            out << u.id << "|"
+                << u.nombre << "|"
+                << u.cedula << "|"
+                << u.correo << "|"
+                << u.telefono << "\n";
         } else {
             out << linea << "\n";
         }
